@@ -8,10 +8,11 @@ public class Toggle : MonoBehaviour {
     FPSCamera camscript;
     public CanvasGroup open;
     public CanvasGroup welcome;
-    public CanvasGroup scanner;
+    //public CanvasGroup scanner;
     public Text scantext;
     public Text user;
     public Text error;
+    public Text message;
     bool tasks = false;
 	// Use this for initialization
 	void Start()
@@ -20,19 +21,20 @@ public class Toggle : MonoBehaviour {
 	}
 	void Awake () {
         welcome.alpha = 0f;
-        scanner.alpha = 0f;
+        //scanner.alpha = 0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (camscript.GetText() != null) {
+            message.text = "scanned QR is " + camscript.GetText();
             if (string.Equals("ID", camscript.GetText().Substring(0, 2)) && !tasks)
             {
                 error.text = "";
                 //if (string.Equals(camscript.GetText(), "Shannon Ke") && !tasks) {
                 welcome.alpha = 1f;
                 open.alpha = 0f;
-                scanner.alpha = 1f;
+                //scanner.alpha = 1f;
                 // if (camscript.GetText() != null) {
                 //     Debug.Log("worked and script was: " + camscript.GetText());
                 // } else {
@@ -57,6 +59,7 @@ public class Toggle : MonoBehaviour {
             else {
                 error.text = "Must scan valid task ID";
             }
+            
         } 
 	}
 
