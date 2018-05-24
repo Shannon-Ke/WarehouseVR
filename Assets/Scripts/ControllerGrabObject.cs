@@ -4,7 +4,9 @@ using UnityEngine;
 using Valve.VR;
 
  public class ControllerGrabObject : MonoBehaviour {
-
+ 	bool log = false;
+ 	public GameObject eventsystem;
+ 	Toggle toggle;
  	private SteamVR_TrackedObject trackedObj;
  	// 1 Stores the GameObject that the trigger is currently colliding with,
  	// so you have the ability to grab the object.
@@ -16,7 +18,9 @@ using Valve.VR;
  	{
  	    get { return SteamVR_Controller.Input((int)trackedObj.index); }
  	}
-
+ 	void Start() {
+ 		toggle = eventsystem.GetComponent<Toggle>();
+ 	}
  	void Awake()
  	{
  	    trackedObj = GetComponent<SteamVR_TrackedObject>();
@@ -118,6 +122,15 @@ using Valve.VR;
  		    {
  		        ReleaseObject();
  		    }
+ 		}
+ 		if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip)) {
+ 			if (!log) {
+ 				toggle.Openlog();
+ 				log = true;
+ 			} else {
+ 				toggle.Closelog(); 
+ 				log = false;
+ 			}
  		}
  	}
  }
