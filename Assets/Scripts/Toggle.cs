@@ -11,7 +11,7 @@ public class Toggle : MonoBehaviour {
     public CanvasGroup open, welcome, instruction, log;
     //public CanvasGroup scanner;
     public Text instrText, scantext, user, error, message, logtxt;
-
+    public GameObject binOne, binTwo;
     public CanvasGroup scan1, scan2, done1, done2;
     bool cart, bins, logtoggle, bin1, bin2, location, item, put, end;
     int itemcount = 0;
@@ -146,7 +146,6 @@ public class Toggle : MonoBehaviour {
             else if (!end) {
                 
                 if (string.Equals("ID : Shannon Ke", camscript.GetText())) {
-                    Debug.Log("WTF ISN'T THIS WORKING");
                     end = true;
                     camscript.ResetText();
                     if (numitems > 0) { 
