@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scanner : MonoBehaviour {
 
+//attached to the left hand! allows scanning of barcodes and toggling of the log on and off
+public class Scanner : MonoBehaviour {
+  bool log = false;
+  public GameObject eventsystem;
+  Toggle toggle;
    private SteamVR_TrackedObject trackedObj;
    public GameObject laserPrefab;
   // 2
@@ -43,6 +47,7 @@ public class Scanner : MonoBehaviour {
       hasScanned = false;
       camscript = fpscam.GetComponent<FPSCamera>();
       laser = Instantiate(laserPrefab);
+      toggle = eventsystem.GetComponent<Toggle>();
   // 2
   laserTransform = laser.transform;
        
@@ -70,6 +75,15 @@ public class Scanner : MonoBehaviour {
           
           
        }
+       if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip)) {
+      if (!log) {
+        toggle.Openlog();
+        log = true;
+      } else {
+        toggle.Closelog(); 
+        log = false;
+      }
+    }
   }
    
 }

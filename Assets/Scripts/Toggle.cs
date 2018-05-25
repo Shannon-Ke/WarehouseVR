@@ -12,13 +12,15 @@ public class Toggle : MonoBehaviour {
     public Text instrText, scantext, user, error, message, logtxt;
 
     public CanvasGroup scan1, scan2, done1, done2;
-    bool cart, bins, logtoggle, bin1, bin2, location, item, put;
+    bool cart, bins, logtoggle, bin1, bin2, location, item, put, end;
     int blueball = 0;
     string bin1string = "";
+    int numitems;
    
 	// Use this for initialization
 	void Start()
-	{
+	{  
+        numitems = 2;
         cart = false;
         bins = false;
         logtoggle = false;
@@ -27,6 +29,7 @@ public class Toggle : MonoBehaviour {
         location = false;
         item = false;
         put = false;
+        end = false;
         camscript = fpscam.GetComponent<FPSCamera>();
 	}
 	void Awake () {
@@ -149,5 +152,69 @@ public class Toggle : MonoBehaviour {
     public void Closelog() {
         log.alpha = 0f;
     }
+    public void SetCart() {
+        cart = true;
+        error.text = "";
+                
+        welcome.alpha = 1f;
+        open.alpha = 0f;
+        
 
+        user.text = "Welcome, USER";
+        logtxt.text = "LOG:\nID : skipped";
+        
+        scantext.text = "Scan cart to begin";
+        camscript.ResetText();
+    }
+    public void SetBins() {
+        logtxt.text += "\nCart : skipped";
+                instruction.alpha = 1f;
+                instrText.text = "Set up Cart Bins";
+                
+                error.text = "";
+                user.text = "Scan and Place Bins";
+                scantext.text = "";
+                scan1.alpha = 1f;
+                scan2.alpha = 1f;
+                bins = true;
+                camscript.ResetText(); 
+    }
+    public void SetBin2() {
+        bin2 = true;
+        scan1.alpha = 0f;
+        scan2.alpha = 0f;
+        Transition();
+        logtxt.text += "\nBins : skipped";
+    }
+    public void SetItem() {
+        error.text = "";
+                item = true;
+                instrText.text = "3 Units";
+                user.text = "Blue Ball\nItem ID: 10003";
+                scantext.text = "Scan item 0/3";
+                logtxt.text += "\nLocation : skipped";
+                camscript.ResetText();
+    }
+    public void SetPut() {
+    
+                scantext.text = "Scan item " + blueball + "/3";
+                logtxt.text += "\nItem : skipped";
+                camscript.ResetText();
+    }
+    public bool GetCart() {
+        return cart;
+    }
+
+    public bool GetBins() {
+        return bins;
+    }
+    public bool GetBin2() {
+        return bin2;
+    }
+    public bool GetItem() {
+        return item;
+    }
+    public bool GetPut() {
+        return put;
+    }
 }

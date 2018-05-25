@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserPointer : MonoBehaviour {
 
+//attached to right hand! allows teleportation and skipping of steps
+public class LaserPointer : MonoBehaviour {
+  public GameObject eventsystem;
+  Toggle toggle;
    private SteamVR_TrackedObject trackedObj;
    // 1
    public GameObject laserPrefab;
@@ -62,6 +65,7 @@ public class LaserPointer : MonoBehaviour {
        reticle = Instantiate(teleportReticlePrefab);
        // 2
        teleportReticleTransform = reticle.transform;
+       toggle = eventsystem.GetComponent<Toggle>();
    }
    // Update is called once per frame
    void Update () {
@@ -94,6 +98,14 @@ public class LaserPointer : MonoBehaviour {
        // 		camscript.SetGrab();
        // 		camscript.CallRend();
        // }
+       if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip)) {
+          if (!toggle.GetCart()) { toggle.SetCart(); }
+          else if (!toggle.GetBins()) { toggle.SetBins(); }
+          else if (!toggle.GetBin2()) { toggle.SetBin2(); }
+          else if (!toggle.GetItem()) { toggle.SetItem(); }
+          else if (!toggle.GetPut()) { toggle.SetPut(); }
+       }
+
 	}
    private void Teleport()
    {
