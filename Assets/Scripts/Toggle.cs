@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Toggle : MonoBehaviour {
-
+    public GameObject eventcontroller;
+    Items items;
     public GameObject fpscam;
     FPSCamera camscript;
     public CanvasGroup open, welcome, instruction, log;
@@ -13,14 +14,14 @@ public class Toggle : MonoBehaviour {
 
     public CanvasGroup scan1, scan2, done1, done2;
     bool cart, bins, logtoggle, bin1, bin2, location, item, put, end;
-    int blueball = 0;
+    int itemcount = 0;
     string bin1string = "";
     int numitems;
-   
+   string currname = "";
+   int currnum = 0;
 	// Use this for initialization
 	void Start()
 	{  
-        numitems = 2;
         cart = false;
         bins = false;
         logtoggle = false;
@@ -31,6 +32,8 @@ public class Toggle : MonoBehaviour {
         put = false;
         end = false;
         camscript = fpscam.GetComponent<FPSCamera>();
+        items = eventcontroller.GetComponent<Items>();
+        numitems = items.Numitems();
 	}
 	void Awake () {
         welcome.alpha = 0f;
@@ -113,35 +116,63 @@ public class Toggle : MonoBehaviour {
                 error.text = "Must scan valid bin";
             }
             
-            else if (string.Equals(user.text, camscript.GetText()) && !item) {
+            else if (string.Equals(user.text, camscript.GetText()) && !item && numitems > 0) {
+                
+                currname = items.GetTask1Keys()[numitems - 1];
+                currnum = items.GetTask1Values()[numitems - 1];
                 error.text = "";
                 item = true;
-                instrText.text = "3 Units";
-                user.text = "Blue Ball\nItem ID: 10003";
-                scantext.text = "Scan item 0/3";
+                instrText.text = currnum + " Units";
+                user.text = currname + "\nItem ID: 10003";
+                scantext.text = "Scan item 0/" + currnum;
                 logtxt.text += "\nLocation : " + camscript.GetText();
                 camscript.ResetText();
                 
             }
             else if (!item) { error.text = "Must scan correct location."; }
-            else if (string.Equals("ItemBlueBall", camscript.GetText()) && !put) {
+            else if (string.Equals(currname, camscript.GetText()) && !put) {
                 error.text = "";
-                blueball++;
-                if (blueball == 3) {
+                itemcount++;
+                if (itemcount == currnum) {
                     put = true;
-                    logtxt.text += "\nItem : Blue Ball (3)";
+                    logtxt.text += "\nItem : " + currname + " (" + currnum + ")";
+                    instrText.text = "Put in Bins";
                 }
-                scantext.text = "Scan item " + blueball + "/3";
+                scantext.text = "Scan item " + itemcount + "/" + currnum;
 
                 camscript.ResetText();
             }
             else if (!put) { error.text = "Must scan correct item."; }
+            else if (!end) {
+                
+                if (string.Equals("ID : Shannon Ke", camscript.GetText())) {
+                    Debug.Log("WTF ISN'T THIS WORKING");
+                    end = true;
+                    camscript.ResetText();
+                    if (numitems > 0) { 
+                numitems--;
+                if (numitems == 0) {
+                    instrText.text = "DONE";
+                } else {
+                    end = false;
+                    item = false;
+                    put = false;
+                    itemcount = 0;
+                    instrText.text = "Go to";
+                    user.text = items.GetTask1Locations()[numitems - 1];
+                    scantext.text = "Scan Location";
+                }
+                }
+            }
+            
+                
+            } 
         }
         
 	}
     void Transition() {
         instrText.text = "Go to";
-        user.text = "A-1-A-2-1";
+        user.text = items.GetTask1Locations()[numitems - 1];
         scantext.text = "Scan Location";
         done1.alpha = 0f;
         done2.alpha = 0f;
@@ -197,7 +228,7 @@ public class Toggle : MonoBehaviour {
     }
     public void SetPut() {
     
-                scantext.text = "Scan item " + blueball + "/3";
+                scantext.text = "Scan item " + itemcount + "/3";
                 logtxt.text += "\nItem : skipped";
                 camscript.ResetText();
     }

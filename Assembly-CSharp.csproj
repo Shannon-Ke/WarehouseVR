@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ControllerGrabObject.cs" />
     <Compile Include="Assets\Scripts\FPSCamera.cs" />
+    <Compile Include="Assets\Scripts\Items.cs" />
     <Compile Include="Assets\Scripts\LaserPointer.cs" />
     <Compile Include="Assets\Scripts\Scanner.cs" />
     <Compile Include="Assets\Scripts\Toggle.cs" />
