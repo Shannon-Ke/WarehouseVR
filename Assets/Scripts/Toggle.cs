@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Toggle : MonoBehaviour {
+    public GameObject bin1highlight;
+    public GameObject bin2highlight;
+    public GameObject controller;
+    ControllerGrabObject heldObject;
+    public GameObject currObj;
+    bool isplaced = false;
+
     public GameObject eventcontroller;
     Items items;
     public GameObject fpscam;
@@ -22,18 +29,13 @@ public class Toggle : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{  
-        cart = false;
-        bins = false;
-        logtoggle = false;
-        bin1 = false;
-        bin2 = false;
-        location = false;
-        item = false;
-        put = false;
-        end = false;
+        Reset();
         camscript = fpscam.GetComponent<FPSCamera>();
         items = eventcontroller.GetComponent<Items>();
+        heldObject = controller.GetComponent<ControllerGrabObject>();
         numitems = items.Numitems();
+        bin1highlight.SetActive(false);
+        bin2highlight.SetActive(false);
 	}
 	void Awake () {
         welcome.alpha = 0f;
@@ -45,7 +47,17 @@ public class Toggle : MonoBehaviour {
         done2.alpha = 0f;
         //scanner.alpha = 0f;
 	}
-	
+	void Reset() {
+        cart = false;
+        bins = false;
+        logtoggle = false;
+        bin1 = false;
+        bin2 = false;
+        location = false;
+        item = false;
+        put = false;
+        end = false;
+    }
 	// Update is called once per frame
 	void Update () {
         if (camscript.GetText() != null) {
@@ -92,6 +104,11 @@ public class Toggle : MonoBehaviour {
                     bin1 = true;
                     logtxt.text += "\nBin One : " + camscript.GetText();
                     bin1string = camscript.GetText();
+                    if (string.Equals(bin1string, "Bin002")) {
+                        GameObject temp = bin1highlight;
+                        bin1highlight = bin2highlight;
+                        bin2highlight = temp;
+                    }
                 } else {
                     if (string.Equals(bin1string, camscript.GetText())) {
                         error.text = "Bin already in use";
@@ -139,14 +156,14 @@ public class Toggle : MonoBehaviour {
                     instrText.text = "Put in Bins";
                 }
                 scantext.text = "Scan item " + itemcount + "/" + currnum;
-
+                
                 camscript.ResetText();
             }
             else if (!put) { error.text = "Must scan correct item."; }
             else if (!end) {
                 
                 if (string.Equals("ID : Shannon Ke", camscript.GetText())) {
-                    Debug.Log("WTF ISN'T THIS WORKING");
+                    
                     end = true;
                     camscript.ResetText();
                     if (numitems > 0) { 

@@ -5,6 +5,8 @@ using UnityEngine;
 
 //attached to the left hand! allows scanning of barcodes and toggling of the log on and off
 public class Scanner : MonoBehaviour {
+
+
   bool log = false;
   public GameObject eventsystem;
   Toggle toggle;
@@ -54,6 +56,7 @@ public class Scanner : MonoBehaviour {
    }
    // Update is called once per frame
    void Update () {
+    
        if (Controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad)) {
           hasScanned = true;
           RaycastHit hit;
