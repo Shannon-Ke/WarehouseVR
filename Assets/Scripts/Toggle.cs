@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Toggle : MonoBehaviour {
-    public GameObject bin1highlight;
-    public GameObject bin2highlight;
+    public GameObject bin1highlight, bin1o;
+    public GameObject bin2highlight, bin2o;
     public GameObject controller;
     ControllerGrabObject heldObject;
-    public GameObject currObj;
+    public GameObject currObj = null;
     bool isplaced = false;
 
     public GameObject eventcontroller;
@@ -17,13 +17,14 @@ public class Toggle : MonoBehaviour {
     FPSCamera camscript;
     public CanvasGroup open, welcome, instruction, log;
     //public CanvasGroup scanner;
-    public Text instrText, scantext, user, error, message, logtxt;
+    public Text instrText, scantext, user, error, message, logtxt, unitstxt, bin1txt, bin2txt;
 
     public CanvasGroup scan1, scan2, done1, done2;
-    bool cart, bins, logtoggle, bin1, bin2, location, item, put, end;
+    public CanvasGroup needfill, needfill2, donebin, donebin2, graphic, notneed, notneed2;
+    bool cart, bins, logtoggle, bin1, bin2, location, item, put, end, donebins;
     int itemcount = 0;
     string bin1string = "";
-    int numitems;
+    int numitems, bincount;
    string currname = "";
    int currnum = 0;
 	// Use this for initialization
@@ -34,6 +35,7 @@ public class Toggle : MonoBehaviour {
         items = eventcontroller.GetComponent<Items>();
         heldObject = controller.GetComponent<ControllerGrabObject>();
         numitems = items.Numitems();
+        bincount = 0;
         bin1highlight.SetActive(false);
         bin2highlight.SetActive(false);
 	}
@@ -45,8 +47,18 @@ public class Toggle : MonoBehaviour {
         scan2.alpha = 0f;
         done1.alpha = 0f;
         done2.alpha = 0f;
+        ResetBins();
         //scanner.alpha = 0f;
 	}
+    void ResetBins() {
+        needfill.alpha = 0f;
+        needfill2.alpha = 0f;
+        donebin.alpha = 0f;
+        donebin2.alpha = 0f;
+        graphic.alpha = 0f;
+        notneed.alpha = 0f;
+        notneed2.alpha = 0f;
+    }
 	void Reset() {
         cart = false;
         bins = false;
@@ -57,6 +69,7 @@ public class Toggle : MonoBehaviour {
         item = false;
         put = false;
         end = false;
+        donebins = false;
     }
 	// Update is called once per frame
 	void Update () {
@@ -108,6 +121,9 @@ public class Toggle : MonoBehaviour {
                         GameObject temp = bin1highlight;
                         bin1highlight = bin2highlight;
                         bin2highlight = temp;
+                        temp = bin1o;
+                        bin1o = bin2o;
+                        bin2o = temp;
                     }
                 } else {
                     if (string.Equals(bin1string, camscript.GetText())) {
@@ -121,11 +137,11 @@ public class Toggle : MonoBehaviour {
                 }
                 camscript.ResetText();
                 if (bin2) {
-                    int count = 0;
-                    while (count < 1000) {
-                        count++;
-                    }
-                    Transition();
+                    done1.alpha = 0f;
+                    done2.alpha = 0f;
+                    instrText.text = "Go to";
+                    user.text = items.GetTask1Locations()[numitems - 1];
+                    scantext.text = "Scan Location";
                 }
                 
             }
@@ -154,35 +170,98 @@ public class Toggle : MonoBehaviour {
                     put = true;
                     logtxt.text += "\nItem : " + currname + " (" + currnum + ")";
                     instrText.text = "Put in Bins";
+                    user.text = "";
+                    scantext.text = "";
+                    unitstxt.text = currnum + "\nUnits";
+                    graphic.alpha = 1f;
+                    if (items.GetUnits()[numitems - 1, 0] != 0) {
+                        bin1txt.text = items.GetUnits()[numitems - 1, 0] + "";
+                        needfill.alpha = 1f;
+                    } else {
+                        notneed.alpha = 1f;
+                    }
+                    if (items.GetUnits()[numitems - 1, 1] != 0) {
+                        bin2txt.text = items.GetUnits()[numitems - 1, 1] + "";
+                        needfill2.alpha = 1f;
+                    } else {
+                        notneed2.alpha = 1f;
+                    }
                 }
                 scantext.text = "Scan item " + itemcount + "/" + currnum;
-                
+                //put in collision detection
+
                 camscript.ResetText();
             }
             else if (!put) { error.text = "Must scan correct item."; }
             else if (!end) {
-                
-                if (string.Equals("ID : Shannon Ke", camscript.GetText())) {
-                    
-                    end = true;
-                    camscript.ResetText();
-                    if (numitems > 0) { 
-                numitems--;
-                if (numitems == 0) {
-                    instrText.text = "DONE";
+                scantext.text = "";
+                //if (string.Equals("ID : Shannon Ke", camscript.GetText())) {\
+                if (!donebins) {
+                    if (heldObject.GetObjectInHand() != null) {
+                        currObj = heldObject.GetObjectInHand();
+                    }
+                    if (needfill.alpha == 1f) {
+                        bin1highlight.SetActive(true); //use currnum variable
+                        if (currObj.transform.position.x < bin1o.transform.position.x + 1.25
+                            && currObj.transform.position.x > bin1o.transform.position.x - 1.25) {
+                            if (currObj.transform.position.z < bin1o.transform.position.z + 1.25
+                                && currObj.transform.position.z > bin1o.transform.position.z - 1.25) {
+                                if (currObj.transform.position.y < bin1o.transform.position.y + 0.75
+                                    && currObj.transform.position.y > bin1o.transform.position.y - 0.75) {
+                                    bincount += 1;
+                                    message.text = "placed item into bin " + bincount;
+                                }
+                            }
+                        }
+                        if (bincount == items.GetUnits()[numitems - 1, 0]) {
+                            needfill.alpha = 0f;
+                            donebin.alpha = 1f;
+                            bincount = 0;
+                            bin1highlight.SetActive(false);
+                        }
+                    } else {
+                        if (needfill2.alpha == 1f) {
+                            bin2highlight.SetActive(true); //use currnum variable
+                            if (currObj.transform.position.x < bin2o.transform.position.x + 1.25
+                                && currObj.transform.position.x > bin2o.transform.position.x - 1.25) {
+                                if (currObj.transform.position.z < bin2o.transform.position.z + 1.25
+                                    && currObj.transform.position.z > bin2o.transform.position.z - 1.25) {
+                                    if (currObj.transform.position.y < bin2o.transform.position.y + 0.75
+                                        && currObj.transform.position.y > bin2o.transform.position.y - 0.75) {
+                                        bincount += 1;
+                                        message.text = "placed item into bin " + bincount;
+                                    }
+                                }
+                            }
+                            if (bincount == items.GetUnits()[numitems - 1, 1]) {
+                                needfill2.alpha = 0f;
+                                donebin2.alpha = 1f;
+                                bincount = 0;
+                                bin2highlight.SetActive(false);
+                            }
+                        } else if (notneed2.alpha == 1f) {
+                            donebins = true;
+                        }
+                    }
                 } else {
-                    end = false;
-                    item = false;
-                    put = false;
-                    itemcount = 0;
-                    instrText.text = "Go to";
-                    user.text = items.GetTask1Locations()[numitems - 1];
-                    scantext.text = "Scan Location";
-                }
-                }
-            }
-            
-                
+                    ResetBins();
+                    end = true;
+                    if (numitems > 0) { 
+                        numitems--;
+                        if (numitems == 0) {
+                            instrText.text = "DONE";
+                        } else {
+                            end = false;
+                            item = false;
+                            put = false;
+                            itemcount = 0;
+                            instrText.text = "Go to";
+                            user.text = items.GetTask1Locations()[numitems - 1];
+                            scantext.text = "Scan Location";
+                        }
+                        //}
+                    }
+                }            
             } 
         }
         
@@ -191,8 +270,7 @@ public class Toggle : MonoBehaviour {
         instrText.text = "Go to";
         user.text = items.GetTask1Locations()[numitems - 1];
         scantext.text = "Scan Location";
-        done1.alpha = 0f;
-        done2.alpha = 0f;
+        
     }
     public void Openlog() {
         log.alpha = 1f;

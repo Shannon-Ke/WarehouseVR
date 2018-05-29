@@ -121,7 +121,7 @@ using Valve.VR;
  		}
  		
  	}
- 	GameObject GetObjectInHand() {
+ 	public GameObject GetObjectInHand() {
  		return objectInHand;
  	}
  }

@@ -6,15 +6,13 @@ using UnityEngine;
 //items class that makes tasks
 public class Items : MonoBehaviour {
 	OrderedDictionary task1 = new OrderedDictionary();
-	string[] loc1;
-	int numitems;
+	string[] loc1 = new string[] {"A-1-A-2-1", "A-1-A-3-1"};
+	int[,] units1 = new int[,] {{0, 2}, {2, 1}};
+	int numitems = 2;
 	// Use this for initialization
 	void Start() {
 		task1.Add("Blue Shirt", 2);
 		task1.Add("Blue Ball", 3);
-		task1.Add("Toy", 4);
-		loc1 = new string[] {"A-1-A-2-1", "A-1-A-3-1", "A-1-A-2-1"};
-		numitems = 3;
 	}
 	public string[] GetTask1Keys() {
 		string[] mykeys = new string[numitems];
@@ -32,5 +30,8 @@ public class Items : MonoBehaviour {
 	}
 	public int Numitems() {
 		return numitems;
+	}
+	public int[,] GetUnits() {
+		return units1;
 	}
 }
