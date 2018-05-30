@@ -66,10 +66,10 @@ public class FPSCamera : MonoBehaviour
                 // decode the current frame
                 var result = barcodeReader.Decode(texture.GetPixels32(),
                   texture.width, texture.height);
-                if (result != null)
-                {
-                    Debug.Log("DECODED TEXT FROM QR: " + result.Text + Screen.currentResolution);
-                }
+                //if (result != null)
+                //{
+                //    Debug.Log("DECODED TEXT FROM QR: " + result.Text + Screen.currentResolution);
+                //}
                 final = result.Text;
             }
             catch (System.Exception ex) { Debug.LogWarning(ex.Message); }
