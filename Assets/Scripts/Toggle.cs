@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Toggle : MonoBehaviour {
-    public GameObject bin1highlight, bin1o;
-    public GameObject bin2highlight, bin2o;
+    public GameObject bin1o;
+    public GameObject bin2o;
     public GameObject controller;
     ControllerGrabObject heldObject;
     public GameObject currObj = null;
@@ -15,7 +15,7 @@ public class Toggle : MonoBehaviour {
     Items items;
     public GameObject fpscam;
     FPSCamera camscript;
-    public CanvasGroup open, welcome, instruction, log;
+    public CanvasGroup open, welcome, instruction, log, bin1highlight, bin2highlight;
     //public CanvasGroup scanner;
     public Text instrText, scantext, user, error, message, logtxt, unitstxt, bin1txt, bin2txt;
 
@@ -36,8 +36,8 @@ public class Toggle : MonoBehaviour {
         heldObject = controller.GetComponent<ControllerGrabObject>();
         numitems = items.Numitems();
         bincount = 0;
-        bin1highlight.SetActive(false);
-        bin2highlight.SetActive(false);
+        bin1highlight.alpha = 0f;
+        bin2highlight.alpha = 0f;
 	}
 	void Awake () {
         welcome.alpha = 0f;
@@ -118,12 +118,12 @@ public class Toggle : MonoBehaviour {
                     logtxt.text += "\nBin One : " + camscript.GetText();
                     bin1string = camscript.GetText();
                     if (string.Equals(bin1string, "Bin002")) {
-                        GameObject temp = bin1highlight;
+                        CanvasGroup temp = bin1highlight;
                         bin1highlight = bin2highlight;
                         bin2highlight = temp;
-                        temp = bin1o;
+                        GameObject temp1 = bin1o;
                         bin1o = bin2o;
-                        bin2o = temp;
+                        bin2o = temp1;
                     }
                 } else {
                     if (string.Equals(bin1string, camscript.GetText())) {
@@ -207,7 +207,7 @@ public class Toggle : MonoBehaviour {
                 }
                 if (needfill.alpha == 1f)
                 {
-                    bin1highlight.SetActive(true); //use currnum variable
+                    bin1highlight.alpha = 1f; //use currnum variable
                     if (currObj.transform.position.x < bin1o.transform.position.x + 1.25
                         && currObj.transform.position.x > bin1o.transform.position.x - 1.25)
                     {
@@ -227,14 +227,14 @@ public class Toggle : MonoBehaviour {
                         needfill.alpha = 0f;
                         donebin.alpha = 1f;
                         bincount = 0;
-                        bin1highlight.SetActive(false);
+                        bin1highlight.alpha = 0f; ;
                     }
                 }
                 else
                 {
                     if (needfill2.alpha == 1f)
                     {
-                        bin2highlight.SetActive(true); //use currnum variable
+                        bin2highlight.alpha = 1f; //use currnum variable
                         if (currObj.transform.position.x < bin2o.transform.position.x + 1.25
                             && currObj.transform.position.x > bin2o.transform.position.x - 1.25)
                         {
@@ -254,7 +254,7 @@ public class Toggle : MonoBehaviour {
                             needfill2.alpha = 0f;
                             donebin2.alpha = 1f;
                             bincount = 0;
-                            bin2highlight.SetActive(false);
+                            bin2highlight.alpha = 0f;
                         }
                     }
                     else if (notneed2.alpha == 1f)

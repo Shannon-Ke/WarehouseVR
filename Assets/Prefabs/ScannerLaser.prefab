@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4117929370293038}
   - component: {fileID: 33616204571944634}
   - component: {fileID: 23746453060336268}
-  - component: {fileID: 65607198978120180}
   m_Layer: 0
   m_Name: ScannerLaser
   m_TagString: Untagged
@@ -37,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 1120827757808566}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 14.1989, y: 3.64897, z: -124.72566}
-  m_LocalScale: {x: 0.059312057, y: 0.010457286, z: 0}
+  m_LocalScale: {x: 0.01931206, y: 0.00045729, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -84,15 +83,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1120827757808566}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65607198978120180
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1120827757808566}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
