@@ -10,8 +10,8 @@ using Valve.VR;
  	// so you have the ability to grab the object.
  	private GameObject collidingObject; 
  	// 2 Serves as a reference to the GameObject that the player is currently grabbing.
- 	private GameObject objectInHand; 
-
+ 	private GameObject objectInHand;
+    public static GameObject oldObject;
  	private SteamVR_Controller.Device Controller
  	{
  	    get { return SteamVR_Controller.Input((int)trackedObj.index); }
@@ -66,6 +66,7 @@ using Valve.VR;
  	{
  	    // Move the GameObject inside the player’s hand and remove it from the collidingObject variable.
  	    objectInHand = collidingObject;
+        oldObject = objectInHand;
  	    collidingObject = null;
  	    // Add a new joint that connects the controller to the object using the AddFixedJoint() method below.
  	    var joint = AddFixedJoint();

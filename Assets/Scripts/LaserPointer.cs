@@ -104,6 +104,7 @@ public class LaserPointer : MonoBehaviour {
           else if (!toggle.GetBin2()) { toggle.SetBin2(); }
           else if (!toggle.GetItem()) { toggle.SetItem(); }
           else if (!toggle.GetPut()) { toggle.SetPut(); }
+          else if (!toggle.GetEnd()) { toggle.SetEnd(); }
        }
 
 	}

@@ -59,10 +59,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BinCollide.cs" />
     <Compile Include="Assets\Scripts\ControllerGrabObject.cs" />
     <Compile Include="Assets\Scripts\FPSCamera.cs" />
     <Compile Include="Assets\Scripts\Items.cs" />
     <Compile Include="Assets\Scripts\LaserPointer.cs" />
+    <Compile Include="Assets\Scripts\ObjectPhysics.cs" />
     <Compile Include="Assets\Scripts\Scanner.cs" />
     <Compile Include="Assets\Scripts\Toggle.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
@@ -179,6 +181,7 @@
     <None Include="Assets\Vuforia\Shaders\OutlineOpaque.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Teleport\Shaders\Highlight.shader" />
     <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Object_OT.xml" />
+    <None Include="Assets\JStoC\readme.txt" />
     <None Include="Assets\Vuforia\Shaders\DepthMask.shader" />
     <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Images.xml" />
     <None Include="Assets\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
