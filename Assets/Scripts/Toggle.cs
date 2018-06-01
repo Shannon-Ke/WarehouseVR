@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Toggle : MonoBehaviour {
+
     public GameObject bin1o;
     public GameObject bin2o;
     public GameObject controller;
-    ControllerGrabObject heldObject;
-    public GameObject currObj = null;
+    
     bool isplaced = false;
 
     public GameObject eventcontroller;
@@ -24,16 +24,18 @@ public class Toggle : MonoBehaviour {
     bool cart, bins, logtoggle, bin1, bin2, location, item, put, end, donebins;
     int itemcount = 0;
     string bin1string = "";
-    int numitems, bincount;
+    int numitems;
+    int bincount;
    string currname = "";
    int currnum = 0;
 	// Use this for initialization
 	void Start()
-	{  
+	{
+       
         Reset();
         camscript = fpscam.GetComponent<FPSCamera>();
         items = eventcontroller.GetComponent<Items>();
-        heldObject = controller.GetComponent<ControllerGrabObject>();
+       
         numitems = items.Numitems();
         bincount = 0;
         bin1highlight.alpha = 0f;
@@ -197,37 +199,22 @@ public class Toggle : MonoBehaviour {
         {
             //figure out why you have to scan something before you get here!
             //if (string.Equals("ID : Shannon Ke", camscript.GetText())) {
-            Debug.Log("end reached");
+            //Debug.Log("end reached");
             if (!donebins)
             {
-                Debug.Log("got here");
-                if (heldObject.GetObjectInHand() != null)
-                {
-                    currObj = heldObject.GetObjectInHand();
-                }
+               
                 if (needfill.alpha == 1f)
                 {
-                    bin1highlight.alpha = 1f; //use currnum variable
-                    if (currObj.transform.position.x < bin1o.transform.position.x + 1.25
-                        && currObj.transform.position.x > bin1o.transform.position.x - 1.25)
-                    {
-                        if (currObj.transform.position.z < bin1o.transform.position.z + 1.25
-                            && currObj.transform.position.z > bin1o.transform.position.z - 1.25)
-                        {
-                            if (currObj.transform.position.y < bin1o.transform.position.y + 0.75
-                                && currObj.transform.position.y > bin1o.transform.position.y - 0.75)
-                            {
-                                bincount += 1;
-                                message.text = "placed item into bin " + bincount;
-                            }
-                        }
-                    }
+                    bin1highlight.alpha = 1f; 
+                    
+                
                     if (bincount == items.GetUnits()[numitems - 1, 0])
                     {
                         needfill.alpha = 0f;
                         donebin.alpha = 1f;
                         bincount = 0;
-                        bin1highlight.alpha = 0f; ;
+                        bin1highlight.alpha = 0f;
+                        
                     }
                 }
                 else
@@ -235,26 +222,16 @@ public class Toggle : MonoBehaviour {
                     if (needfill2.alpha == 1f)
                     {
                         bin2highlight.alpha = 1f; //use currnum variable
-                        if (currObj.transform.position.x < bin2o.transform.position.x + 1.25
-                            && currObj.transform.position.x > bin2o.transform.position.x - 1.25)
-                        {
-                            if (currObj.transform.position.z < bin2o.transform.position.z + 1.25
-                                && currObj.transform.position.z > bin2o.transform.position.z - 1.25)
-                            {
-                                if (currObj.transform.position.y < bin2o.transform.position.y + 0.75
-                                    && currObj.transform.position.y > bin2o.transform.position.y - 0.75)
-                                {
-                                    bincount += 1;
-                                    message.text = "placed item into bin " + bincount;
-                                }
-                            }
-                        }
+                       
+                    
                         if (bincount == items.GetUnits()[numitems - 1, 1])
                         {
+                            
                             needfill2.alpha = 0f;
                             donebin2.alpha = 1f;
                             bincount = 0;
                             bin2highlight.alpha = 0f;
+                            donebins = true;
                         }
                     }
                     else if (notneed2.alpha == 1f)
@@ -267,6 +244,7 @@ public class Toggle : MonoBehaviour {
             {
                 ResetBins();
                 end = true;
+                unitstxt.text = "";
                 if (numitems > 0)
                 {
                     numitems--;
@@ -279,12 +257,13 @@ public class Toggle : MonoBehaviour {
                         end = false;
                         item = false;
                         put = false;
+                        donebins = false;
                         itemcount = 0;
                         instrText.text = "Go to";
                         user.text = items.GetTask1Locations()[numitems - 1];
                         scantext.text = "Scan Location";
                     }
-                    //}
+                    
                 }
             }
         }
@@ -346,10 +325,20 @@ public class Toggle : MonoBehaviour {
                 camscript.ResetText();
     }
     public void SetPut() {
-    
+        put = true;
                 scantext.text = "Scan item " + itemcount + "/3";
                 logtxt.text += "\nItem : skipped";
                 camscript.ResetText();
+    }
+    
+    public void SetEnd()
+    {
+        instrText.text = "";
+        user.text = "End of Tote";
+        scantext.text = "";
+        numitems = 0;
+        end = true;
+        camscript.ResetText();
     }
     public bool GetCart() {
         return cart;
@@ -366,5 +355,14 @@ public class Toggle : MonoBehaviour {
     }
     public bool GetPut() {
         return put;
+    }
+    
+    public bool GetEnd()
+    {
+        return end;
+    }
+    public void IncrementBin()
+    {
+        bincount++;
     }
 }
