@@ -83,8 +83,8 @@ public class Toggle : MonoBehaviour {
                 
                 welcome.alpha = 1f;
                 open.alpha = 0f;
-                
 
+                instruction.alpha = 1f;
                 user.text = "Welcome, " + camscript.GetText().Substring(5, camscript.GetText().Length - 5);
                 logtxt.text = "LOG:\n" + camscript.GetText();
                 cart = true;
