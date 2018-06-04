@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Toggle : MonoBehaviour {
-
+    public GameObject blue, black;
+    Animator blueanim, blackanim;
     public GameObject bin1o;
     public GameObject bin2o;
     public GameObject controller;
@@ -35,7 +36,9 @@ public class Toggle : MonoBehaviour {
         Reset();
         camscript = fpscam.GetComponent<FPSCamera>();
         items = eventcontroller.GetComponent<Items>();
-       
+        blueanim = blue.GetComponent<Animator>();
+        blackanim = black.GetComponent<Animator>();
+
         numitems = items.Numitems();
         bincount = 0;
         bin1highlight.alpha = 0f;
@@ -73,6 +76,7 @@ public class Toggle : MonoBehaviour {
         end = false;
         donebins = false;
     }
+    
 	// Update is called once per frame
 	void Update () {
         if (camscript.GetText() != null) {
@@ -83,8 +87,9 @@ public class Toggle : MonoBehaviour {
                 
                 welcome.alpha = 1f;
                 open.alpha = 0f;
-                
 
+                blueanim.Play("blue-anim");
+                blackanim.Play("black-anim");
                 user.text = "Welcome, " + camscript.GetText().Substring(5, camscript.GetText().Length - 5);
                 logtxt.text = "LOG:\n" + camscript.GetText();
                 cart = true;
@@ -96,6 +101,7 @@ public class Toggle : MonoBehaviour {
             }
             else if (string.Equals("Cart", camscript.GetText().Substring(0, 4)) && !bins)
             {
+                
                 logtxt.text += "\nCart : " + camscript.GetText();
                 instruction.alpha = 1f;
                 instrText.text = "Set up Cart Bins";
