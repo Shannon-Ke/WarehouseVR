@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BinCollide.cs" />
+    <Compile Include="Assets\Scripts\Combine.cs" />
     <Compile Include="Assets\Scripts\ControllerGrabObject.cs" />
     <Compile Include="Assets\Scripts\FPSCamera.cs" />
     <Compile Include="Assets\Scripts\Items.cs" />
