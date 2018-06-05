@@ -4,7 +4,10 @@ using UnityEngine;
 using Valve.VR;
 
  public class ControllerGrabObject : MonoBehaviour {
- 	
+
+    //anchor the cart to the user if they pick it up
+
+    public GameObject cart;
  	private SteamVR_TrackedObject trackedObj;
  	// 1 Stores the GameObject that the trigger is currently colliding with,
  	// so you have the ability to grab the object.
@@ -13,12 +16,14 @@ using Valve.VR;
  	private GameObject objectInHand;
     public static GameObject oldObject;
  	private SteamVR_Controller.Device Controller
+        
  	{
  	    get { return SteamVR_Controller.Input((int)trackedObj.index); }
  	}
  	
  	void Awake()
  	{
+       
  	    trackedObj = GetComponent<SteamVR_TrackedObject>();
  	}
  	private void SetCollidingObject(Collider col)
@@ -31,6 +36,7 @@ using Valve.VR;
  	    }
  	    // 2 assigns object as potential grab target
  	    collidingObject = col.gameObject;
+       
  	}
 
  	/******* TRIGGER METHODS *******/
@@ -39,8 +45,8 @@ using Valve.VR;
  	// a potential grab target
  	public void OnTriggerEnter(Collider other)
  	{
- 	    SetCollidingObject(other);
- 	}
+        SetCollidingObject(other);
+    }
 
  	// ensures target is set when player holds controller over an object for a while
  	public void OnTriggerStay(Collider other)
@@ -108,7 +114,14 @@ using Valve.VR;
  		{
  		    if (collidingObject)
  		    {
- 		        GrabObject();
+                if (collidingObject.name == "pCube741")
+                {
+                    //anchor to main cam
+                    //cart.transform.position = new Vector3(transform.position.x, -0.015f, transform.position.z + 0.08f);
+                    cart.transform.parent = transform;
+
+                } else { GrabObject(); }
+               
  		    }
  		}
 
@@ -118,7 +131,10 @@ using Valve.VR;
  		    if (objectInHand)
  		    {
  		        ReleaseObject();
- 		    }
+ 		    } else if (collidingObject && collidingObject.name == "pCube741")
+            {
+                cart.transform.parent = null;
+            }
  		}
  		
  	}
