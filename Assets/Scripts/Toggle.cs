@@ -101,7 +101,7 @@ public class Toggle : MonoBehaviour {
             else if (string.Equals("Cart", camscript.GetText().Substring(0, 4)) && !bins)
             {
                 logtxt.text += "\nCart : " + camscript.GetText();
-                instruction.alpha = 1f;
+                
                 instrText.text = "Set up Cart Bins";
                 
                 error.text = "";
@@ -146,6 +146,7 @@ public class Toggle : MonoBehaviour {
                     done1.alpha = 0f;
                     done2.alpha = 0f;
                     instrText.text = "Go to";
+                    user.resizeTextForBestFit = true;
                     user.text = items.GetTask1Locations()[numitems - 1];
                     scantext.text = "Scan Location";
                     if (!item1)
@@ -175,6 +176,7 @@ public class Toggle : MonoBehaviour {
                 error.text = "";
                 item = true;
                 instrText.text = currnum + " Units";
+              
                 user.text = currname + "\nItem ID: 10003";
                 scantext.text = "Scan item 0/" + currnum;
                 logtxt.text += "\nLocation : " + camscript.GetText();
@@ -270,6 +272,7 @@ public class Toggle : MonoBehaviour {
                     if (numitems == 0)
                     {
                         instrText.text = "DONE";
+                        user.text = "End of Tote";
                     }
                     else
                     {
@@ -308,7 +311,7 @@ public class Toggle : MonoBehaviour {
                 
         welcome.alpha = 1f;
         open.alpha = 0f;
-        
+        instruction.alpha = 1f;
 
         user.text = "Welcome, USER";
         logtxt.text = "LOG:\nID : skipped";
@@ -318,7 +321,7 @@ public class Toggle : MonoBehaviour {
     }
     public void SetBins() {
         logtxt.text += "\nCart : skipped";
-        instruction.alpha = 1f;
+        
         instrText.text = "Set up Cart Bins";
         error.text = "";
                 user.text = "Scan and Place Bins";
@@ -334,31 +337,94 @@ public class Toggle : MonoBehaviour {
         scan2.alpha = 0f;
         Transition();
         logtxt.text += "\nBins : skipped";
+        done1.alpha = 0f;
+        done2.alpha = 0f;
+        instrText.text = "Go to";
+        user.resizeTextForBestFit = true;
+        user.text = items.GetTask1Locations()[numitems - 1];
+        scantext.text = "Scan Location";
+        if (!item1)
+        {
+            loc2highlight.alpha = 1f;
+
+        }
     }
     public void SetItem() {
+        if (!item1)
+        {
+            loc2highlight.alpha = 0f;
+        }
+        else
+        {
+            loc1highlight.alpha = 0f;
+        }
+        currname = items.GetTask1Keys()[numitems - 1];
+        currnum = items.GetTask1Values()[numitems - 1];
         error.text = "";
-                item = true;
-                instrText.text = "3 Units";
-                user.text = "Blue Ball\nItem ID: 10003";
-                scantext.text = "Scan item 0/3";
-                logtxt.text += "\nLocation : skipped";
-                camscript.ResetText();
+        item = true;
+        instrText.text = currnum + " Units";
+        user.text = currname + "\nItem ID: 10003";
+        scantext.text = "Scan item 0/" + currnum;
+        logtxt.text += "\nLocation : skipped";
+        
+        camscript.ResetText();
     }
     public void SetPut() {
         put = true;
-                scantext.text = "Scan item " + itemcount + "/3";
-                logtxt.text += "\nItem : skipped";
-                camscript.ResetText();
+        logtxt.text += "\nItem : " + currname + " (" + currnum + ")";
+        instrText.text = "Put in Bins";
+        user.text = "";
+        scantext.text = "";
+        unitstxt.text = currnum + "\nUnits";
+        graphic.alpha = 1f;
+        if (items.GetUnits()[numitems - 1, 0] != 0)
+        {
+            bin1txt.text = items.GetUnits()[numitems - 1, 0] + "";
+            needfill.alpha = 1f;
+        }
+        else
+        {
+            notneed.alpha = 1f;
+        }
+        if (items.GetUnits()[numitems - 1, 1] != 0)
+        {
+            bin2txt.text = items.GetUnits()[numitems - 1, 1] + "";
+            needfill2.alpha = 1f;
+        }
+        else
+        {
+            notneed2.alpha = 1f;
+        }
     }
     
     public void SetEnd()
     {
-        instrText.text = "";
-        user.text = "End of Tote";
-        scantext.text = "";
-        numitems = 0;
+        ResetBins();
         end = true;
-        camscript.ResetText();
+        unitstxt.text = "";
+        if (numitems > 0)
+        {
+            numitems--;
+            if (numitems == 0)
+            {
+                instrText.text = "DONE";
+                user.text = "End of Tote";
+            }
+            else
+            {
+                item1 = true;
+                end = false;
+                item = false;
+                put = false;
+                donebins = false;
+                itemcount = 0;
+                instrText.text = "Go to";
+                user.text = items.GetTask1Locations()[numitems - 1];
+                scantext.text = "Scan Location";
+                loc1highlight.alpha = 1f;
+            }
+
+        }
     }
     public bool GetCart() {
         return cart;

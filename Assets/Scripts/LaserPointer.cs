@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 //attached to right hand! allows teleportation and skipping of steps
@@ -105,6 +106,7 @@ public class LaserPointer : MonoBehaviour {
           else if (!toggle.GetItem()) { toggle.SetItem(); }
           else if (!toggle.GetPut()) { toggle.SetPut(); }
           else if (!toggle.GetEnd()) { toggle.SetEnd(); }
+          else { SceneManager.LoadScene("Warehouse"); }
        }
 
 	}
