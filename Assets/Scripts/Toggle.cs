@@ -8,14 +8,15 @@ public class Toggle : MonoBehaviour {
     public GameObject bin1o;
     public GameObject bin2o;
     public GameObject controller;
-    
+    bool item1 = false;
     bool isplaced = false;
 
     public GameObject eventcontroller;
     Items items;
     public GameObject fpscam;
     FPSCamera camscript;
-    public CanvasGroup open, welcome, instruction, log, bin1highlight, bin2highlight;
+    public CanvasGroup open, welcome, instruction, log, bin1highlight, bin2highlight, loc1highlight, loc2highlight;
+   
     //public CanvasGroup scanner;
     public Text instrText, scantext, user, error, message, logtxt, unitstxt, bin1txt, bin2txt;
 
@@ -40,6 +41,9 @@ public class Toggle : MonoBehaviour {
         bincount = 0;
         bin1highlight.alpha = 0f;
         bin2highlight.alpha = 0f;
+        loc1highlight.alpha = 0f;
+        loc2highlight.alpha = 0f;
+        
 	}
 	void Awake () {
         welcome.alpha = 0f;
@@ -76,7 +80,7 @@ public class Toggle : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (camscript.GetText() != null) {
-            message.text = "scanned QR is " + camscript.GetText();
+            //message.text = "scanned QR is " + camscript.GetText();
             if (string.Equals("ID", camscript.GetText().Substring(0, 2)) && !cart)
             {
                 error.text = "";
@@ -144,6 +148,12 @@ public class Toggle : MonoBehaviour {
                     instrText.text = "Go to";
                     user.text = items.GetTask1Locations()[numitems - 1];
                     scantext.text = "Scan Location";
+                    if (!item1)
+                    {
+                        loc2highlight.alpha = 1f;
+                        
+                    }
+                    
                 }
                 
             }
@@ -152,7 +162,14 @@ public class Toggle : MonoBehaviour {
             }
             
             else if (string.Equals(user.text, camscript.GetText()) && !item && numitems > 0) {
-                
+                if (!item1)
+                {
+                    loc2highlight.alpha = 0f;
+                }
+                else
+                {
+                    loc1highlight.alpha = 0f;
+                }
                 currname = items.GetTask1Keys()[numitems - 1];
                 currnum = items.GetTask1Values()[numitems - 1];
                 error.text = "";
@@ -163,9 +180,11 @@ public class Toggle : MonoBehaviour {
                 logtxt.text += "\nLocation : " + camscript.GetText();
                 camscript.ResetText();
                 
+                
             }
             else if (!item) { error.text = "Must scan correct location."; }
             else if (string.Equals(currname, camscript.GetText()) && !put) {
+                
                 error.text = "";
                 itemcount++;
                 if (itemcount == currnum) {
@@ -254,6 +273,7 @@ public class Toggle : MonoBehaviour {
                     }
                     else
                     {
+                        item1 = true;
                         end = false;
                         item = false;
                         put = false;
@@ -262,6 +282,7 @@ public class Toggle : MonoBehaviour {
                         instrText.text = "Go to";
                         user.text = items.GetTask1Locations()[numitems - 1];
                         scantext.text = "Scan Location";
+                        loc1highlight.alpha = 1f;
                     }
                     
                 }
@@ -297,10 +318,9 @@ public class Toggle : MonoBehaviour {
     }
     public void SetBins() {
         logtxt.text += "\nCart : skipped";
-                instruction.alpha = 1f;
-                instrText.text = "Set up Cart Bins";
-                
-                error.text = "";
+        instruction.alpha = 1f;
+        instrText.text = "Set up Cart Bins";
+        error.text = "";
                 user.text = "Scan and Place Bins";
                 scantext.text = "";
                 scan1.alpha = 1f;

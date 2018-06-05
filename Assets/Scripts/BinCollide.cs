@@ -16,7 +16,7 @@ public class BinCollide : MonoBehaviour {
         if (ReferenceEquals(collision.collider.gameObject, ControllerGrabObject.oldObject))
             
         {
-            Debug.Log("COllided!");
+            ControllerGrabObject.oldObject.transform.parent = transform;
             toggle.IncrementBin();
             ControllerGrabObject.oldObject = null;
         }

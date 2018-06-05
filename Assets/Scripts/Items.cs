@@ -6,8 +6,9 @@ using UnityEngine;
 //items class that makes tasks
 public class Items : MonoBehaviour {
 	OrderedDictionary task1 = new OrderedDictionary();
-	string[] loc1 = new string[] {"A-1-A-2-1", "A-1-A-3-1"};
-	int[,] units1 = new int[,] {{0, 2}, {2, 1}};
+	string[] loc1 = new string[] {"A-4-A-1-5", "A-3-A-2-7"};
+
+    int[,] units1 = new int[,] {{0, 2}, {2, 1}};
 	int numitems = 2;
 	// Use this for initialization
 	void Start() {

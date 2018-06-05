@@ -131,7 +131,7 @@ using Valve.VR;
  		    if (objectInHand)
  		    {
  		        ReleaseObject();
- 		    } else if (collidingObject && collidingObject.name == "pCube741")
+ 		    } else 
             {
                 cart.transform.parent = null;
             }
