@@ -5,7 +5,7 @@ using UnityEngine;
 
 //attached to the left hand! allows scanning of barcodes and toggling of the log on and off
 public class Scanner : MonoBehaviour {
-
+    public GameObject cart;
 
   bool log = false;
   public GameObject eventsystem;
@@ -78,15 +78,21 @@ public class Scanner : MonoBehaviour {
           
           
        }
-       if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip)) {
-      if (!log) {
-        toggle.Openlog();
-        log = true;
-      } else {
-        toggle.Closelog(); 
-        log = false;
-      }
-    }
+    //   if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip)) {
+    //  if (!log) {
+    //    toggle.Openlog();
+    //    log = true;
+    //  } else {
+    //    toggle.Closelog(); 
+    //    log = false;
+    //  }
+    //}
+        if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+        {
+            //reset cart
+            cart.transform.position = ControllerGrabObject.origPos;
+            cart.transform.rotation = ControllerGrabObject.originalRotationValue;
+        }
   }
    
 }

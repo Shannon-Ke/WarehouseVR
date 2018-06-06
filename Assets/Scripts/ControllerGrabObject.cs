@@ -6,7 +6,8 @@ using Valve.VR;
  public class ControllerGrabObject : MonoBehaviour {
 
     //anchor the cart to the user if they pick it up
-
+    public static Vector3 origPos;
+    public static Quaternion originalRotationValue;
     public GameObject cart;
  	private SteamVR_TrackedObject trackedObj;
  	// 1 Stores the GameObject that the trigger is currently colliding with,
@@ -23,7 +24,8 @@ using Valve.VR;
  	
  	void Awake()
  	{
-       
+        originalRotationValue = cart.transform.rotation;
+        origPos = cart.transform.position;
  	    trackedObj = GetComponent<SteamVR_TrackedObject>();
  	}
  	private void SetCollidingObject(Collider col)
@@ -133,6 +135,8 @@ using Valve.VR;
  		        ReleaseObject();
  		    } else 
             {
+             
+                origPos = cart.transform.position;
                 cart.transform.parent = null;
             }
  		}
