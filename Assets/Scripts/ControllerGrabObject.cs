@@ -8,6 +8,12 @@ using Valve.VR;
     //anchor the cart to the user if they pick it up
     public static Vector3 origPos;
     public static Quaternion originalRotationValue;
+    public static Vector3 bin1pos;
+    public static Quaternion bin1rot;
+    public static Vector3 bin2pos;
+    public static Quaternion bin2rot;
+    public GameObject bin1;
+    public GameObject bin2;
     public GameObject cart;
  	private SteamVR_TrackedObject trackedObj;
  	// 1 Stores the GameObject that the trigger is currently colliding with,
@@ -24,6 +30,10 @@ using Valve.VR;
  	
  	void Awake()
  	{
+        bin1pos = bin1.transform.position;
+        bin2pos = bin2.transform.position;
+        bin1rot = bin1.transform.rotation;
+        bin2rot = bin2.transform.rotation;
         originalRotationValue = cart.transform.rotation;
         origPos = cart.transform.position;
  	    trackedObj = GetComponent<SteamVR_TrackedObject>();
@@ -135,7 +145,8 @@ using Valve.VR;
  		        ReleaseObject();
  		    } else 
             {
-             
+                bin1pos = bin1.transform.position;
+                bin2pos = bin2.transform.position;
                 origPos = cart.transform.position;
                 cart.transform.parent = null;
             }

@@ -6,7 +6,8 @@ using UnityEngine;
 //attached to the left hand! allows scanning of barcodes and toggling of the log on and off
 public class Scanner : MonoBehaviour {
     public GameObject cart;
-
+    public GameObject bin1;
+    public GameObject bin2;
   bool log = false;
   public GameObject eventsystem;
   Toggle toggle;
@@ -92,6 +93,10 @@ public class Scanner : MonoBehaviour {
             //reset cart
             cart.transform.position = ControllerGrabObject.origPos;
             cart.transform.rotation = ControllerGrabObject.originalRotationValue;
+            bin1.transform.position = ControllerGrabObject.bin1pos;
+            bin1.transform.rotation = ControllerGrabObject.bin1rot;
+            bin2.transform.position = ControllerGrabObject.bin2pos;
+            bin2.transform.rotation = ControllerGrabObject.bin2rot;
         }
   }
    
