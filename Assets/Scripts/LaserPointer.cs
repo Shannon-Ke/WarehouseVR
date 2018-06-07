@@ -106,7 +106,7 @@ public class LaserPointer : MonoBehaviour {
           else if (!toggle.GetItem()) { toggle.SetItem(); }
           else if (!toggle.GetPut()) { toggle.SetPut(); }
           else if (!toggle.GetEnd()) { toggle.SetEnd(); }
-          else { SceneManager.LoadScene("Scenario2"); }
+          else { SceneManager.LoadScene("Scenario1"); }
        }
 
 	}
