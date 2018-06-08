@@ -15,6 +15,8 @@ using Valve.VR;
     public GameObject bin1;
     public GameObject bin2;
     public GameObject cart;
+    public GameObject camrig;
+    bool grabcart = false;
  	private SteamVR_TrackedObject trackedObj;
  	// 1 Stores the GameObject that the trigger is currently colliding with,
  	// so you have the ability to grab the object.
@@ -119,40 +121,44 @@ using Valve.VR;
  	    // Remove the reference to the formerly attached object.
  	    objectInHand = null;
  	}
- 	// Update is called once per frame
- 	void Update () {
- 		// When the player squeezes the trigger and there’s a potential grab target, this grabs it.
- 		if (Controller.GetHairTriggerDown())
- 		{
- 		    if (collidingObject)
- 		    {
-                if (collidingObject.name == "pCube741")
+    // Update is called once per frame
+    void Update()
+    {
+        // When the player squeezes the trigger and there’s a potential grab target, this grabs it.
+        if (Controller.GetHairTriggerDown())
+        {
+            if (collidingObject)
+            {
+                if (!grabcart && collidingObject.name == "pCube741")
                 {
                     //change this to the camera rig
-                    cart.transform.parent = transform;
+                    cart.transform.parent = camrig.transform;
+                    grabcart = true;
+                }
+                else if (grabcart && collidingObject.name == "pCube741")
+                {
+                    bin1pos = bin1.transform.position;
+                    bin2pos = bin2.transform.position;
+                    origPos = cart.transform.position;
+                    cart.transform.parent = null;
+                    grabcart = false;
+                }
+                else { GrabObject(); }
 
-                } else { GrabObject(); }
-               
- 		    }
- 		}
-
- 		// If the player releases the trigger and there’s an object attached to the controller, this releases it.
- 		if (Controller.GetHairTriggerUp())
- 		{
- 		    if (objectInHand)
- 		    {
- 		        ReleaseObject();
- 		    } else 
-            {
-                bin1pos = bin1.transform.position;
-                bin2pos = bin2.transform.position;
-                origPos = cart.transform.position;
-                cart.transform.parent = null;
             }
- 		}
- 		
- 	}
- 	public GameObject GetObjectInHand() {
- 		return objectInHand;
- 	}
+        }
+
+        // If the player releases the trigger and there’s an object attached to the controller, this releases it.
+        if (Controller.GetHairTriggerUp())
+        {
+            if (objectInHand)
+            {
+                ReleaseObject();
+            }
+
+        }
+    }
+ 	    public GameObject GetObjectInHand() {
+ 		    return objectInHand;
+ 	    }
  }
