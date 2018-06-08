@@ -128,8 +128,7 @@ using Valve.VR;
  		    {
                 if (collidingObject.name == "pCube741")
                 {
-                    //anchor to main cam
-                    //cart.transform.position = new Vector3(transform.position.x, -0.015f, transform.position.z + 0.08f);
+                    //change this to the camera rig
                     cart.transform.parent = transform;
 
                 } else { GrabObject(); }
