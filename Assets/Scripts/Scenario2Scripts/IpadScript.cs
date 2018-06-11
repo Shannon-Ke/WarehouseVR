@@ -18,6 +18,5 @@ public class IpadScript : MonoBehaviour
            
             finish = true;
         }
-        
     }
 }

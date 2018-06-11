@@ -4,7 +4,7 @@ using UnityEngine;
 using Valve.VR;
 
  public class ControllerGrabObject : MonoBehaviour {
-
+    public static ControllerGrabObject control;
     //anchor the cart to the user if they pick it up
     public static Vector3 origPos;
     public static Quaternion originalRotationValue;
@@ -16,6 +16,7 @@ using Valve.VR;
     public GameObject bin2;
     public GameObject cart;
     public GameObject camrig;
+    public GameObject held;
     bool grabcart = false;
  	private SteamVR_TrackedObject trackedObj;
  	// 1 Stores the GameObject that the trigger is currently colliding with,
@@ -29,7 +30,10 @@ using Valve.VR;
  	{
  	    get { return SteamVR_Controller.Input((int)trackedObj.index); }
  	}
- 	
+ 	public GameObject GetHeld()
+    {
+        return objectInHand;
+    }
  	void Awake()
  	{
         bin1pos = bin1.transform.position;
@@ -134,6 +138,7 @@ using Valve.VR;
                     //change this to the camera rig
                     cart.transform.parent = camrig.transform;
                     grabcart = true;
+                    held.SetActive(true);
                 }
                 else if (grabcart && collidingObject.name == "pCube741")
                 {
@@ -142,6 +147,7 @@ using Valve.VR;
                     origPos = cart.transform.position;
                     cart.transform.parent = null;
                     grabcart = false;
+                    held.SetActive(false);
                 }
                 else { GrabObject(); }
 
