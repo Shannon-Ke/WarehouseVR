@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class Toggle : MonoBehaviour
 {
-
+    public GameObject arrow2;
+    public GameObject arrow;
+    public GameObject loc1arrow;
+    public GameObject loc2arrow;
     public GameObject bin1o;
     public GameObject bin2o;
     public GameObject controller;
@@ -172,11 +175,13 @@ public class Toggle : MonoBehaviour
                     user.resizeTextForBestFit = true;
                     user.text = items.GetTask1Locations()[numitems - 1];
                     scantext.text = "Scan Location";
+
                     if (!item1)
                     {
                         loc2highlight.alpha = 1f;
+                        arrow2.SetActive(true);
 
-                    }
+                    } 
 
                 }
 
@@ -191,10 +196,12 @@ public class Toggle : MonoBehaviour
                 if (!item1)
                 {
                     loc2highlight.alpha = 0f;
+                    loc2arrow.SetActive(false);
                 }
                 else
                 {
                     loc1highlight.alpha = 0f;
+                    loc1arrow.SetActive(false);
                 }
                 currname = items.GetTask1Keys()[numitems - 1];
                 currnum = items.GetTask1Values()[numitems - 1];
@@ -326,6 +333,7 @@ public class Toggle : MonoBehaviour
                         user.text = items.GetTask1Locations()[numitems - 1];
                         scantext.text = "Scan Location";
                         loc1highlight.alpha = 1f;
+                        arrow.SetActive(true);
                     }
 
                 }
@@ -392,18 +400,24 @@ public class Toggle : MonoBehaviour
         if (!item1)
         {
             loc2highlight.alpha = 1f;
+            arrow2.SetActive(true);
 
         }
+       
     }
     public void SetItem()
     {
         if (!item1)
         {
             loc2highlight.alpha = 0f;
+            loc2arrow.SetActive(false);
+            arrow2.SetActive(false);
         }
         else
         {
             loc1highlight.alpha = 0f;
+            loc1arrow.SetActive(false);
+            arrow.SetActive(false);
         }
         currname = items.GetTask1Keys()[numitems - 1];
         currnum = items.GetTask1Values()[numitems - 1];
@@ -470,6 +484,7 @@ public class Toggle : MonoBehaviour
                 user.text = items.GetTask1Locations()[numitems - 1];
                 scantext.text = "Scan Location";
                 loc1highlight.alpha = 1f;
+                arrow.SetActive(true);
             }
 
         }

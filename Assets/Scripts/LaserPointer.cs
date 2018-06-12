@@ -29,8 +29,9 @@ public class LaserPointer : MonoBehaviour {
    // 6
    public Vector3 teleportReticleOffset; 
    // 7
-   public LayerMask teleportMask; 
-   // 8
+   public LayerMask teleportMask;
+    // 8
+    public GameObject point;
    private bool shouldTeleport; 
    // public GameObject fpscam;
    // FPSCamera camscript;
@@ -47,7 +48,8 @@ public class LaserPointer : MonoBehaviour {
    }
    private void ShowLaser(RaycastHit hit)
    {
-       // 1
+        // 1
+        point.SetActive(true);
        laser.SetActive(true);
        // 2
        laserTransform.position = Vector3.Lerp(trackedObj.transform.position, hitPoint, .5f);
@@ -89,6 +91,7 @@ public class LaserPointer : MonoBehaviour {
        else // 3
        {
            laser.SetActive(false);
+            point.SetActive(false);
            reticle.SetActive(false);
        }
        if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && shouldTeleport)
