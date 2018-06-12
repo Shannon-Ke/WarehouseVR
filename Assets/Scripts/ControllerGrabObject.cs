@@ -95,6 +95,7 @@ using Valve.VR;
  	    // Add a new joint that connects the controller to the object using the AddFixedJoint() method below.
  	    var joint = AddFixedJoint();
  	    joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
+        objectInHand.GetComponent<Collider>().enabled = false;
  	}
 
  	// Make a new fixed joint, add it to the controller, and then set it up so it
@@ -121,6 +122,7 @@ using Valve.VR;
  	        // object, so the result is a realistic arc
  	        objectInHand.GetComponent<Rigidbody>().velocity = Controller.velocity;
  	        objectInHand.GetComponent<Rigidbody>().angularVelocity = Controller.angularVelocity;
+            objectInHand.GetComponent<Collider>().enabled = true;
  	    }
  	    // Remove the reference to the formerly attached object.
  	    objectInHand = null;

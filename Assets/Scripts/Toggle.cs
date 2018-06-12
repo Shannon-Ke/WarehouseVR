@@ -203,6 +203,8 @@ public class Toggle : MonoBehaviour
                     loc1highlight.alpha = 0f;
                     loc1arrow.SetActive(false);
                 }
+                loc1arrow.SetActive(false);
+                loc2arrow.SetActive(false);
                 currname = items.GetTask1Keys()[numitems - 1];
                 currnum = items.GetTask1Values()[numitems - 1];
                 error.text = "";
@@ -264,7 +266,7 @@ public class Toggle : MonoBehaviour
             //Debug.Log("end reached");
             if (!donebins)
             {
-
+                
                 if (needfill.alpha == 1f)
                 {
                     bin1highlight.alpha = 1f;
