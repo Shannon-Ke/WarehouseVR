@@ -62,7 +62,10 @@
     <Compile Include="Assets\Scripts\BinCollide.cs" />
     <Compile Include="Assets\Scripts\Combine.cs" />
     <Compile Include="Assets\Scripts\ControllerGrabObject.cs" />
+    <Compile Include="Assets\Scripts\ControllerGrabScript2.cs" />
+    <Compile Include="Assets\Scripts\ControllerScenThree.cs" />
     <Compile Include="Assets\Scripts\FPSCamera.cs" />
+    <Compile Include="Assets\Scripts\Hide.cs" />
     <Compile Include="Assets\Scripts\Items.cs" />
     <Compile Include="Assets\Scripts\LaserPointer.cs" />
     <Compile Include="Assets\Scripts\ObjectPhysics.cs" />
