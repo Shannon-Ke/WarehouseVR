@@ -47,6 +47,15 @@ public class ControllerScenThree : MonoBehaviour
         {
             Debug.Log("Could be used later");
         }
+        //if (ControllerGrabScript2.collide)
+        //{
+        //    if (Controller.GetPress(SteamVR_Controller.ButtonMask.Trigger) && ControllerGrabScript2.collide.name == "map")
+        //    {
+        //        ControllerGrabScript2.collide.transform.position = new Vector3(ControllerGrabScript2.collide.transform.position.x,
+        //            transform.position.y, ControllerGrabScript2.collide.transform.position.z);
+
+        //    }
+        //}
     }
 
 }

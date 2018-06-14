@@ -17,7 +17,8 @@ public class ControllerGrabScript2 : MonoBehaviour
     bool bar;
     public GameObject bargraph;
     public GameObject scatterplot;
-    
+    public GameObject map;
+    public static GameObject collide;
     private SteamVR_Controller.Device Controller
 
     {
@@ -43,6 +44,7 @@ public class ControllerGrabScript2 : MonoBehaviour
         }
         // 2 assigns object as potential grab target
         collidingObject = col.gameObject;
+        collide = collidingObject;
 
     }
 
@@ -119,7 +121,6 @@ public class ControllerGrabScript2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // When the player squeezes the trigger and there’s a potential grab target, this grabs it.
         if (Controller.GetHairTriggerDown())
         {
 
@@ -131,37 +132,55 @@ public class ControllerGrabScript2 : MonoBehaviour
                     scatterplot.SetActive(false);
                     bar = true;
                     scatter = false;
-                } else if (bar && collidingObject.name == "Button")
+                }
+                else if (bar && collidingObject.name == "Button")
                 {
                     scatterplot.SetActive(true);
                     bargraph.SetActive(false);
                     bar = false;
                     scatter = true;
-                } else if (collidingObject.name == "hideblue" || collidingObject.name == "hidered")
+                }
+                else if (collidingObject.name == "hideblue" || collidingObject.name == "hidered")
                 {
                     if (collidingObject.GetComponent<Hide>().color.activeSelf)
                     {
                         collidingObject.GetComponent<Hide>().color.SetActive(false);
-                    } else
+                        collidingObject.GetComponent<Hide>().info.SetActive(false);
+                    }
+                    else
                     {
                         collidingObject.GetComponent<Hide>().color.SetActive(true);
+                        collidingObject.GetComponent<Hide>().info.SetActive(true);
                     }
-                    
-                   
+
+
+
+                } else if (collidingObject.name == "RedBar" || collidingObject.name == "BlueBar")
+                {
+                    GameObject detail = collidingObject.GetComponent<Bars>().Info();
+                    if (detail.activeSelf)
+                    {
+                        detail.SetActive(false);
+                    } else if (!detail.activeSelf)
+                    {
+                        detail.SetActive(true);
+                    }
                 }
+               
+               
             }
 
+            
 
         }
-
-        // If the player releases the trigger and there’s an object attached to the controller, this releases it.
-        if (Controller.GetHairTriggerUp())
+        if (collidingObject)
         {
-            if (objectInHand)
+            if (Controller.GetPress(SteamVR_Controller.ButtonMask.Trigger) && collidingObject.name == "map")
             {
-                ReleaseObject();
-            }
+                collidingObject.transform.position = new Vector3(collidingObject.transform.position.x, transform.position.y, collidingObject.transform.position.z);
 
+            }
         }
+
     }
 }

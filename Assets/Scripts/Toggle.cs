@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Toggle : MonoBehaviour
 {
+    public GameObject convey;
     public GameObject arrow2;
     public GameObject arrow;
     public GameObject loc1arrow;
@@ -320,8 +321,9 @@ public class Toggle : MonoBehaviour
                     numitems--;
                     if (numitems == 0)
                     {
-                        instrText.text = "DONE";
-                        user.text = "End of Tote";
+                        instrText.text = "Tote Complete";
+                        user.text = "Take bins to conveyer belts";
+                        convey.SetActive(true);
                     }
                     else
                     {
