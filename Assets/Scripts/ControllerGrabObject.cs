@@ -141,6 +141,11 @@ using Valve.VR;
                     cart.transform.parent = camrig.transform;
                     grabcart = true;
                     held.SetActive(true);
+                    
+                    foreach (Collider c in  collidingObject.GetComponents<Collider>()) { c.isTrigger = true; }
+                    foreach (Collider c in collidingObject.GetComponentsInChildren<Collider>()) { c.isTrigger = true; }
+                    collidingObject.GetComponent<Rigidbody>().isKinematic = true;
+                    foreach (Rigidbody r in collidingObject.GetComponentsInChildren<Rigidbody>()) { r.isKinematic = true; }
                 }
                 else if (grabcart && collidingObject.name == "pCube741")
                 {
@@ -150,6 +155,11 @@ using Valve.VR;
                     cart.transform.parent = null;
                     grabcart = false;
                     held.SetActive(false);
+                    foreach (Collider c in collidingObject.GetComponents<Collider>()) { c.isTrigger = false; }
+                    foreach (Collider c in collidingObject.GetComponentsInChildren<Collider>()) { c.isTrigger = false; }
+                    collidingObject.GetComponent<Rigidbody>().isKinematic = false;
+                    foreach (Rigidbody r in collidingObject.GetComponentsInChildren<Rigidbody>()) { r.isKinematic = false; }
+                    Debug.Log("hellodooo");
                 }
                 else { GrabObject(); }
 

@@ -155,7 +155,8 @@ public class ControllerGrabScript2 : MonoBehaviour
 
 
 
-                } else if (collidingObject.name == "RedBar" || collidingObject.name == "BlueBar")
+                } else if (collidingObject.name == "RedBar" || collidingObject.name == "BlueBar"
+                    || collidingObject.name == "bluedot" || collidingObject.name == "reddot")
                 {
                     GameObject detail = collidingObject.GetComponent<Bars>().Info();
                     if (detail.activeSelf)
@@ -165,7 +166,7 @@ public class ControllerGrabScript2 : MonoBehaviour
                     {
                         detail.SetActive(true);
                     }
-                }
+                }   
                
                
             }

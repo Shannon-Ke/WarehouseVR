@@ -473,8 +473,9 @@ public class Toggle : MonoBehaviour
             numitems--;
             if (numitems == 0)
             {
-                instrText.text = "DONE";
-                user.text = "End of Tote";
+                instrText.text = "Tote Complete";
+                user.text = "Take bins to conveyer belts";
+                convey.SetActive(true);
             }
             else
             {
