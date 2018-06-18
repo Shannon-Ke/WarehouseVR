@@ -178,8 +178,10 @@ public class ControllerGrabScript2 : MonoBehaviour
         {
             if (Controller.GetPress(SteamVR_Controller.ButtonMask.Trigger) && collidingObject.name == "map")
             {
+                //could be map.position - transform.initial
                 collidingObject.transform.position = new Vector3(collidingObject.transform.position.x, transform.position.y, collidingObject.transform.position.z);
-
+                ////trying for rotation too?
+                //collidingObject.transform.rotation = new Quaternion(collidingObject.transform.rotation.x, transform.rotation.y, collidingObject.transform.rotation.z, collidingObject.transform.rotation.w);
             }
         }
 
