@@ -6,7 +6,7 @@ using Valve.VR;
 public class ControllerGrabScript2 : MonoBehaviour
 {
     public static ControllerGrabObject control;
-
+    public GameObject dots, front, back;
     private SteamVR_TrackedObject trackedObj;
     // 1 Stores the GameObject that the trigger is currently colliding with,
     // so you have the ability to grab the object.
@@ -176,12 +176,27 @@ public class ControllerGrabScript2 : MonoBehaviour
         }
         if (collidingObject)
         {
-            if (Controller.GetPress(SteamVR_Controller.ButtonMask.Trigger) && collidingObject.name == "map")
+            if (Controller.GetPress(SteamVR_Controller.ButtonMask.Trigger))
             {
                 //could be map.position - transform.initial
-                collidingObject.transform.position = new Vector3(collidingObject.transform.position.x, transform.position.y, collidingObject.transform.position.z);
-                ////trying for rotation too?
-                //collidingObject.transform.rotation = new Quaternion(collidingObject.transform.rotation.x, transform.rotation.y, collidingObject.transform.rotation.z, collidingObject.transform.rotation.w);
+                if (collidingObject.name == "map")
+                {
+                    collidingObject.transform.position = new Vector3(collidingObject.transform.position.x, transform.position.y, collidingObject.transform.position.z);
+                }
+                else if (collidingObject.name == "Slide")
+                {
+                   
+                    if (transform.position.x < front.transform.position.x && transform.position.x > back.transform.position.x)
+                    {
+                       
+                        collidingObject.transform.position = new Vector3(transform.position.x, collidingObject.transform.position.y, collidingObject.transform.position.z);
+                        foreach (ControlAnimation c in dots.GetComponentsInChildren<ControlAnimation>())
+                        {
+                            c.Ani((collidingObject.transform.position.x - front.transform.position.x) / (back.transform.position.x - front.transform.position.x));
+                        }
+                    }
+                    
+                }
             }
         }
 

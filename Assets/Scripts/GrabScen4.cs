@@ -127,6 +127,9 @@ public class GrabScen4 : MonoBehaviour
                     if (!script.Opened())
                     {
                         Open(script);
+                    } else if (script.Opened())
+                    {
+                        Close(script);
                     }
                 }
 
@@ -144,12 +147,18 @@ public class GrabScen4 : MonoBehaviour
         
         foreach (ScreenAnim s in UIScreens.GetComponentsInChildren<ScreenAnim>())
         {
-            s.CloseAnim();
+            if (script != s) s.CloseAnim();
         }
         script.InAnim();
+        script.Toggle();
     }
     void Close(ScreenAnim script)
     {
-
+        foreach (ScreenAnim s in UIScreens.GetComponentsInChildren<ScreenAnim>())
+        {
+            if (script != s) s.OpenAnim();
+        }
+        script.OutAnim();
+        script.Toggle();
     }
 }

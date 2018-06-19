@@ -3,19 +3,20 @@ using UnityEngine.UI;
 
 public class ControlAnimation : MonoBehaviour
 {
-    private Animator anim;
-    public Slider slider;   //Assign the UI slider of your scene in this slot 
-
+    private Animation anim;
+    public string myanim;
     // Use this for initialization
     void Start()
     {
-        anim = GetComponent<Animator>();
-        anim.speed = 0;
+        anim = GetComponent<Animation>();
+        anim.Play(myanim);
+        anim[myanim].speed = 0;
     }
 
     // Update is called once per frame
-    void Update()
+    public void Ani(float value)
     {
-        anim.Play("TEST_DELETE", -1, slider.normalizedValue);
+       
+        anim[myanim].normalizedTime = value;
     }
 }
