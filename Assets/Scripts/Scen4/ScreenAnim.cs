@@ -7,6 +7,7 @@ public class ScreenAnim : MonoBehaviour {
     public string close;
     public string zoomin;
     public string zoomout;
+    public GameObject call;
     private Animation anim;
     bool opened;
      //Use this for initialization
@@ -39,4 +40,5 @@ public class ScreenAnim : MonoBehaviour {
     {
         return opened;
     }
+    
 }

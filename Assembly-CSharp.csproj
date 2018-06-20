@@ -98,15 +98,16 @@
     <Compile Include="Assets\Scripts\ControllerGrabScript2.cs" />
     <Compile Include="Assets\Scripts\ControllerScenThree.cs" />
     <Compile Include="Assets\Scripts\FPSCamera.cs" />
-    <Compile Include="Assets\Scripts\GrabScen4.cs" />
     <Compile Include="Assets\Scripts\Hide.cs" />
     <Compile Include="Assets\Scripts\Items.cs" />
     <Compile Include="Assets\Scripts\LaserPointer.cs" />
     <Compile Include="Assets\Scripts\ObjectPhysics.cs" />
     <Compile Include="Assets\Scripts\Scanner.cs" />
+    <Compile Include="Assets\Scripts\Scen4\GrabScen4.cs" />
     <Compile Include="Assets\Scripts\Scen4\Screen2.cs" />
     <Compile Include="Assets\Scripts\Scen4\Screen3.cs" />
     <Compile Include="Assets\Scripts\Scen4\ScreenAnim.cs" />
+    <Compile Include="Assets\Scripts\Scen4\vp.cs" />
     <Compile Include="Assets\Scripts\Scenario2Scripts\ChargerScript.cs" />
     <Compile Include="Assets\Scripts\Scenario2Scripts\ChargerScript2.cs" />
     <Compile Include="Assets\Scripts\Scenario2Scripts\IpadScript.cs" />
