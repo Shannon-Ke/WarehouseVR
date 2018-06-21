@@ -17,6 +17,7 @@ using Valve.VR;
     public GameObject cart;
     public GameObject camrig;
     public GameObject held;
+    public static bool cartgrabbed = false;
     bool grabcart = false;
  	private SteamVR_TrackedObject trackedObj;
  	// 1 Stores the GameObject that the trigger is currently colliding with,
@@ -146,6 +147,7 @@ using Valve.VR;
                     foreach (Collider c in collidingObject.GetComponentsInChildren<Collider>()) { c.isTrigger = true; }
                     collidingObject.GetComponent<Rigidbody>().isKinematic = true;
                     foreach (Rigidbody r in collidingObject.GetComponentsInChildren<Rigidbody>()) { r.isKinematic = true; }
+                    cartgrabbed = true;
                 }
                 else if (grabcart && collidingObject.name == "pCube741")
                 {
@@ -159,7 +161,7 @@ using Valve.VR;
                     foreach (Collider c in collidingObject.GetComponentsInChildren<Collider>()) { c.isTrigger = false; }
                     collidingObject.GetComponent<Rigidbody>().isKinematic = false;
                     foreach (Rigidbody r in collidingObject.GetComponentsInChildren<Rigidbody>()) { r.isKinematic = false; }
-                    Debug.Log("hellodooo");
+                    cartgrabbed = false;
                 }
                 else { GrabObject(); }
 

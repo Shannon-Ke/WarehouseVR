@@ -15,7 +15,7 @@ public class Toggle : MonoBehaviour
     public GameObject controller;
     bool item1 = false;
     bool isplaced = false;
-
+    public CanvasGroup slow;
     public GameObject eventcontroller;
     Items items;
     public GameObject fpscam;
@@ -204,6 +204,9 @@ public class Toggle : MonoBehaviour
                     loc1highlight.alpha = 0f;
                     loc1arrow.SetActive(false);
                 }
+                if (ControllerGrabObject.cartgrabbed) { message.text = "Be sure to detach yourself from the cart and that the cart is not colliding with anything"; }
+                else if (!ControllerGrabObject.cartgrabbed) { message.text = ""; }
+                
                 loc1arrow.SetActive(false);
                 loc2arrow.SetActive(false);
                 currname = items.GetTask1Keys()[numitems - 1];
@@ -222,7 +225,9 @@ public class Toggle : MonoBehaviour
             else if (!item) { error.text = "Must scan correct location."; }
             else if (string.Equals(currname, camscript.GetText()) && !put)
             {
-
+                if (ControllerGrabObject.cartgrabbed) { message.text = "Be sure to detach yourself from the cart and that the cart is not colliding with anything"; }
+                else if (!ControllerGrabObject.cartgrabbed) { message.text = ""; }
+                slow.alpha = 0f;
                 error.text = "";
                 itemcount++;
                 if (itemcount == currnum)
