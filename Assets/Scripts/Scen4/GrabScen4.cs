@@ -130,6 +130,7 @@ public class GrabScen4 : MonoBehaviour
                     {
                         Open(script);
                         counter++;
+                       
                     } else if (script.Opened())
                     {
                         Close(script);

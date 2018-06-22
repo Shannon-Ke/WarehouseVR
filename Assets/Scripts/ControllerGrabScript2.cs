@@ -5,6 +5,7 @@ using Valve.VR;
 
 public class ControllerGrabScript2 : MonoBehaviour
 {
+    public GameObject workers;
     public static ControllerGrabObject control;
     public GameObject dots, front, back;
     private SteamVR_TrackedObject trackedObj;
@@ -17,7 +18,7 @@ public class ControllerGrabScript2 : MonoBehaviour
     bool bar;
     public GameObject bargraph;
     public GameObject scatterplot;
-    public GameObject map;
+    
     public static GameObject collide;
     private SteamVR_Controller.Device Controller
 
@@ -126,14 +127,14 @@ public class ControllerGrabScript2 : MonoBehaviour
 
             if (collidingObject)
             {
-                if (scatter && collidingObject.name == "Button")
+                if (scatter && collidingObject.name == "Viewbutton")
                 {
                     bargraph.SetActive(true);
                     scatterplot.SetActive(false);
                     bar = true;
                     scatter = false;
                 }
-                else if (bar && collidingObject.name == "Button")
+                else if (bar && collidingObject.name == "Viewbutton")
                 {
                     scatterplot.SetActive(true);
                     bargraph.SetActive(false);
@@ -166,7 +167,20 @@ public class ControllerGrabScript2 : MonoBehaviour
                     {
                         detail.SetActive(true);
                     }
-                }   
+                } else if (collidingObject.name == "Worker")
+                {
+                    collidingObject.GetComponent<Worker>().ToggleWorker();
+                }   else if (collidingObject.name == "WorkerButton")
+                {
+                    if (workers.activeSelf)
+                    {
+                        workers.SetActive(false);
+                    } else
+                    {
+                        workers.SetActive(true);
+                    }
+                    
+                }
                
                
             }
