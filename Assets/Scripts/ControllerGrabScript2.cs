@@ -17,10 +17,12 @@ public class ControllerGrabScript2 : MonoBehaviour
     bool scatter;
     bool bar;
     bool heat;
+    bool world;
     public GameObject bargraph;
     public GameObject scatterplot;
     public GameObject heatmap;
     public GameObject heatmaptoggle;
+    public GameObject globe;
     public GameObject riseup;
     public static GameObject collide;
     private SteamVR_Controller.Device Controller
@@ -145,9 +147,15 @@ public class ControllerGrabScript2 : MonoBehaviour
                     scatter = true;
                 } else if (heat && collidingObject.name == "Viewbutton")
                 {
-                    bargraph.SetActive(true);
+                    globe.SetActive(true);
                     heatmaptoggle.SetActive(false);
                     heat = false;
+                    world = true;
+                } else if (globe && collidingObject.name == "Viewbutton")
+                {
+                    bargraph.SetActive(true);
+                    globe.SetActive(false);
+                    world = false;
                     bar = true;
                 }
                 else if (collidingObject.name == "hideblue" || collidingObject.name == "hidered")
