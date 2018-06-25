@@ -13,7 +13,6 @@ public class ControlAnimation : MonoBehaviour
         anim[myanim].speed = 0;
     }
 
-    // Update is called once per frame
     public void Ani(float value)
     {
        

@@ -16,9 +16,12 @@ public class ControllerGrabScript2 : MonoBehaviour
     private GameObject objectInHand;
     bool scatter;
     bool bar;
+    bool heat;
     public GameObject bargraph;
     public GameObject scatterplot;
-    
+    public GameObject heatmap;
+    public GameObject heatmaptoggle;
+    public GameObject riseup;
     public static GameObject collide;
     private SteamVR_Controller.Device Controller
 
@@ -129,9 +132,9 @@ public class ControllerGrabScript2 : MonoBehaviour
             {
                 if (scatter && collidingObject.name == "Viewbutton")
                 {
-                    bargraph.SetActive(true);
+                    heatmaptoggle.SetActive(true);
                     scatterplot.SetActive(false);
-                    bar = true;
+                    heat = true;
                     scatter = false;
                 }
                 else if (bar && collidingObject.name == "Viewbutton")
@@ -140,6 +143,12 @@ public class ControllerGrabScript2 : MonoBehaviour
                     bargraph.SetActive(false);
                     bar = false;
                     scatter = true;
+                } else if (heat && collidingObject.name == "Viewbutton")
+                {
+                    bargraph.SetActive(true);
+                    heatmaptoggle.SetActive(false);
+                    heat = false;
+                    bar = true;
                 }
                 else if (collidingObject.name == "hideblue" || collidingObject.name == "hidered")
                 {
@@ -181,8 +190,29 @@ public class ControllerGrabScript2 : MonoBehaviour
                     }
                     
                 }
-               
-               
+                else if (collidingObject.name == "Raise")
+                {
+                    Debug.Log("touched");
+                    if (RaiseAnim.risen)
+                    {
+                        foreach (RaiseAnim r in riseup.GetComponentsInChildren<RaiseAnim>())
+                        {
+                            r.Fall();
+                        }
+                        RaiseAnim.risen = false;
+                    }
+                    else
+                    {
+                        Debug.Log("shold be here");
+                        foreach (RaiseAnim r in riseup.GetComponentsInChildren<RaiseAnim>())
+                        {
+                            r.Rise();
+                        }
+                        RaiseAnim.risen = true;
+                    }
+                }
+
+
             }
 
             
@@ -211,6 +241,19 @@ public class ControllerGrabScript2 : MonoBehaviour
                     }
                     
                 }
+                else if (collidingObject.name == "Slide1")
+                {
+                    if (transform.position.x < front.transform.position.x && transform.position.x > back.transform.position.x)
+                    {
+
+                        collidingObject.transform.position = new Vector3(transform.position.x, collidingObject.transform.position.y, collidingObject.transform.position.z);
+                        foreach (ControlAnimation c in heatmap.GetComponentsInChildren<ControlAnimation>())
+                        {
+                            c.Ani((collidingObject.transform.position.x - front.transform.position.x) / (back.transform.position.x - front.transform.position.x));
+                        }
+                    }
+                }
+                
             }
         }
 

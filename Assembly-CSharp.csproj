@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\Items.cs" />
     <Compile Include="Assets\Scripts\LaserPointer.cs" />
     <Compile Include="Assets\Scripts\ObjectPhysics.cs" />
+    <Compile Include="Assets\Scripts\RaiseAnim.cs" />
     <Compile Include="Assets\Scripts\Scanner.cs" />
     <Compile Include="Assets\Scripts\Scen4\GrabScen4.cs" />
     <Compile Include="Assets\Scripts\Scen4\Screen2.cs" />
