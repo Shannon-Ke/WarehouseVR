@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Toggle : MonoBehaviour
 {
+    public AudioClip scanIDtobegin, scanCarttobegin, scanbins, golocation1, threetimes, twotimes, golocation2, placeinbins, complete;
+    AudioSource audioSource;
     public GameObject convey;
     public GameObject arrow2;
     public GameObject arrow;
@@ -46,14 +48,14 @@ public class Toggle : MonoBehaviour
         Reset();
         camscript = fpscam.GetComponent<FPSCamera>();
         items = eventcontroller.GetComponent<Items>();
-
+        audioSource = GetComponent<AudioSource>();
         numitems = items.Numitems();
         bincount = 0;
         bin1highlight.alpha = 0f;
         bin2highlight.alpha = 0f;
         loc1highlight.alpha = 0f;
         loc2highlight.alpha = 0f;
-
+        audioSource.PlayOneShot(scanIDtobegin);
     }
     void Awake()
     {
@@ -108,6 +110,7 @@ public class Toggle : MonoBehaviour
                 logtxt.text = "LOG:\n" + camscript.GetText();
                 cart = true;
                 scantext.text = "Scan cart to begin";
+                audioSource.PlayOneShot(scanCarttobegin);
                 camscript.ResetText();
             }
             else if (!cart)
@@ -119,7 +122,7 @@ public class Toggle : MonoBehaviour
                 logtxt.text += "\nCart : " + camscript.GetText();
 
                 instrText.text = "Set up Cart Bins";
-
+                audioSource.PlayOneShot(scanbins);
                 error.text = "";
                 user.text = "Scan and Place Bins";
                 scantext.text = "";
@@ -176,13 +179,17 @@ public class Toggle : MonoBehaviour
                     user.resizeTextForBestFit = true;
                     user.text = items.GetTask1Locations()[numitems - 1];
                     scantext.text = "Scan Location";
-
+                    if (ControllerGrabObject.cartgrabbed) { message.text = ""; }
+                    else if (!ControllerGrabObject.cartgrabbed) { message.text = "Be sure to attach the cart to yourself by pressing the trigger button on it"; }
                     if (!item1)
                     {
                         loc2highlight.alpha = 1f;
                         arrow2.SetActive(true);
-
-                    } 
+                        audioSource.PlayOneShot(golocation1);
+                    } else
+                    {
+                        audioSource.PlayOneShot(golocation2);
+                    }
 
                 }
 
@@ -196,11 +203,13 @@ public class Toggle : MonoBehaviour
             {
                 if (!item1)
                 {
+                    audioSource.PlayOneShot(threetimes);
                     loc2highlight.alpha = 0f;
                     loc2arrow.SetActive(false);
                 }
                 else
                 {
+                    audioSource.PlayOneShot(twotimes);
                     loc1highlight.alpha = 0f;
                     loc1arrow.SetActive(false);
                 }
@@ -232,6 +241,7 @@ public class Toggle : MonoBehaviour
                 itemcount++;
                 if (itemcount == currnum)
                 {
+                    audioSource.PlayOneShot(placeinbins);
                     put = true;
                     logtxt.text += "\nItem : " + currname + " (" + currnum + ")";
                     instrText.text = "Put in Bins";
@@ -326,8 +336,9 @@ public class Toggle : MonoBehaviour
                     numitems--;
                     if (numitems == 0)
                     {
+                        audioSource.PlayOneShot(complete);
                         instrText.text = "Tote Complete";
-                        user.text = "Take bins to conveyer belts";
+                        user.text = "Take bins to conveyor belts";
                         convey.SetActive(true);
                     }
                     else
@@ -376,7 +387,7 @@ public class Toggle : MonoBehaviour
 
         user.text = "Welcome, USER";
         logtxt.text = "LOG:\nID : skipped";
-
+        audioSource.PlayOneShot(scanCarttobegin);
         scantext.text = "Scan cart to begin";
         camscript.ResetText();
     }
@@ -385,6 +396,7 @@ public class Toggle : MonoBehaviour
         logtxt.text += "\nCart : skipped";
 
         instrText.text = "Set up Cart Bins";
+        audioSource.PlayOneShot(scanbins);
         error.text = "";
         user.text = "Scan and Place Bins";
         scantext.text = "";
@@ -406,13 +418,19 @@ public class Toggle : MonoBehaviour
         user.resizeTextForBestFit = true;
         user.text = items.GetTask1Locations()[numitems - 1];
         scantext.text = "Scan Location";
+        if (ControllerGrabObject.cartgrabbed) { message.text = ""; }
+        else if (!ControllerGrabObject.cartgrabbed) { message.text = "Be sure to attach the cart to yourself by pressing the trigger button on it"; }
         if (!item1)
         {
             loc2highlight.alpha = 1f;
             arrow2.SetActive(true);
-
+            audioSource.PlayOneShot(golocation1);
         }
-       
+        else
+        {
+            audioSource.PlayOneShot(golocation2);
+        }
+
     }
     public void SetItem()
     {
@@ -421,13 +439,16 @@ public class Toggle : MonoBehaviour
             loc2highlight.alpha = 0f;
             loc2arrow.SetActive(false);
             arrow2.SetActive(false);
+            audioSource.PlayOneShot(threetimes);
         }
         else
         {
             loc1highlight.alpha = 0f;
             loc1arrow.SetActive(false);
             arrow.SetActive(false);
+            audioSource.PlayOneShot(twotimes);
         }
+        
         currname = items.GetTask1Keys()[numitems - 1];
         currnum = items.GetTask1Values()[numitems - 1];
         error.text = "";
@@ -444,6 +465,7 @@ public class Toggle : MonoBehaviour
         put = true;
         logtxt.text += "\nItem : " + currname + " (" + currnum + ")";
         instrText.text = "Put in Bins";
+        audioSource.PlayOneShot(placeinbins);
         user.text = "";
         scantext.text = "";
         unitstxt.text = currnum + "\nUnits";
@@ -478,6 +500,7 @@ public class Toggle : MonoBehaviour
             numitems--;
             if (numitems == 0)
             {
+                audioSource.PlayOneShot(complete);
                 instrText.text = "Tote Complete";
                 user.text = "Take bins to conveyer belts";
                 convey.SetActive(true);
