@@ -25,6 +25,7 @@ public class ControllerGrabScript2 : MonoBehaviour
     public GameObject globe;
     public GameObject riseup;
     public static GameObject collide;
+    public GameObject asia, africa, us, europe;
     private SteamVR_Controller.Device Controller
 
     {
@@ -124,6 +125,21 @@ public class ControllerGrabScript2 : MonoBehaviour
         // Remove the reference to the formerly attached object.
         objectInHand = null;
     }
+    void MapToggle(GameObject curr, GameObject one, GameObject two, GameObject three)
+    {
+        if (curr.activeSelf)
+        {
+            curr.SetActive(false);
+        }
+        else
+        {
+            
+            curr.SetActive(true);
+        }
+        one.SetActive(false);
+        two.SetActive(false);
+        three.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -219,7 +235,24 @@ public class ControllerGrabScript2 : MonoBehaviour
                         RaiseAnim.risen = true;
                     }
                 }
-
+                else if (collidingObject.name == "Africa"){
+                    Debug.Log("herehere");
+                    if (africa.activeSelf)
+                    {
+                        africa.SetActive(false);
+                    }
+                    else
+                    {
+                        Debug.Log("should be here");
+                        africa.SetActive(true);
+                    }
+                    asia.SetActive(false);
+                    us.SetActive(false);
+                    europe.SetActive(false);
+                }
+                else if (collidingObject.name == "NorthAmerica") { MapToggle(us, africa, asia, europe); }
+                else if (collidingObject.name == "Europe") { MapToggle(europe, us, africa, asia); }
+                else if (collidingObject.name == "Asia") { MapToggle(asia, europe, us, africa); }
 
             }
 
