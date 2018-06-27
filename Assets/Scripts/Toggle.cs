@@ -352,6 +352,8 @@ public class Toggle : MonoBehaviour
                         instrText.text = "Go to";
                         user.text = items.GetTask1Locations()[numitems - 1];
                         scantext.text = "Scan Location";
+                        if (ControllerGrabObject.cartgrabbed) { message.text = ""; }
+                        else if (!ControllerGrabObject.cartgrabbed) { message.text = "Be sure to attach the cart to yourself by pressing the trigger button on it"; }
                         loc1highlight.alpha = 1f;
                         arrow.SetActive(true);
                     }
@@ -516,6 +518,8 @@ public class Toggle : MonoBehaviour
                 instrText.text = "Go to";
                 user.text = items.GetTask1Locations()[numitems - 1];
                 scantext.text = "Scan Location";
+                if (ControllerGrabObject.cartgrabbed) { message.text = ""; }
+                else if (!ControllerGrabObject.cartgrabbed) { message.text = "Be sure to attach the cart to yourself by pressing the trigger button on it"; }
                 loc1highlight.alpha = 1f;
                 arrow.SetActive(true);
             }
