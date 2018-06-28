@@ -5,6 +5,7 @@ using UnityEngine;
 public class Worker : MonoBehaviour {
     public GameObject dot;
     public GameObject bar;
+
 	public void ToggleWorker()
     {
         if (dot.activeSelf)

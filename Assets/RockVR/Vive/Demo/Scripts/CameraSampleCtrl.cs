@@ -41,15 +41,15 @@ namespace RockVR.Vive.Demo
         {
             if (controllerState == ControllerState.Ray)
             {
-                tooltipController.triggerText = "Pick Camera";
-                tooltipController.touchpadText = "Swicth Camera";
+                tooltipController.triggerText = "Grab Items/Click buttons";
+                tooltipController.touchpadText = "Teleport";
                 tooltipController.appMenuText = "Start/Stop Capture";
             }
             else if (controllerState == ControllerState.Touch)
             {
-                tooltipController.triggerText = "Grab Camera";
+                tooltipController.triggerText = "Grab Items/Click buttons";
                 tooltipController.touchpadText = "Teleport";
-                tooltipController.appMenuText = "Start/Stop Capture";
+               
             }
             gripButton.SetActive(false);
         }

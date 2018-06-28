@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
-
+using UnityEngine.Video;
 public class GrabScen4 : MonoBehaviour
 {
     public GameObject call;
@@ -148,6 +148,7 @@ public class GrabScen4 : MonoBehaviour
             counter = 0;
             call.SetActive(false);
             video.SetActive(true);
+            
         } else if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip) && video.activeSelf)
         {
             video.SetActive(false);
