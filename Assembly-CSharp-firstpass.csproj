@@ -305,7 +305,7 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="zxing.unity">
-      <HintPath>C:/Users/johnd/Documents/Github/WarehouseVR/Assets/ExternalDLL/zxing.unity.dll</HintPath>
+      <HintPath>C:/Users/johnd/Documents/Github/WarehouseVR/Assets/BarcodeStuff/zxing.unity.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/johnd/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>

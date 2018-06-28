@@ -68,12 +68,6 @@
     <Compile Include="Assets\SteamVR\Editor\SteamVR_Settings.cs" />
     <Compile Include="Assets\SteamVR\Editor\SteamVR_SkyboxEditor.cs" />
     <Compile Include="Assets\SteamVR\Editor\SteamVR_Update.cs" />
-    <None Include="Assets\Editor\Vuforia\VuforiaMars_ModelTarget\authoringinfo.xml" />
-    <None Include="Assets\Editor\Vuforia\VuforiaMars_VuMark\authoringinfo.xml" />
-    <None Include="Assets\Editor\Vuforia\Emulator\VuforiaEmulator.xml" />
-    <None Include="Assets\Editor\Vuforia\TargetsetData\VuforiaMars_Object_info.xml" />
-    <None Include="Assets\Editor\Vuforia\ForPrint\ModelTarget\readme_3dprint.txt" />
-    <None Include="Assets\Editor\Vuforia\CylinderTargetTextures\VuforiaMars_Images\authoringinfo.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/johnd/Documents/Github/WarehouseVR/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -324,7 +318,7 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="zxing.unity">
-      <HintPath>C:/Users/johnd/Documents/Github/WarehouseVR/Assets/ExternalDLL/zxing.unity.dll</HintPath>
+      <HintPath>C:/Users/johnd/Documents/Github/WarehouseVR/Assets/BarcodeStuff/zxing.unity.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/johnd/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.7/Editor/UnityEditor.Advertisements.dll</HintPath>
