@@ -7,7 +7,7 @@ using Valve.VR;
 public class ControllerGrabScript2 : MonoBehaviour
 {
     public Text workerName;
-    public GameObject video;
+    public CanvasGroup video;
     public GameObject workers;
     public static ControllerGrabObject control;
     public GameObject dots, front, back;
@@ -219,7 +219,7 @@ public class ControllerGrabScript2 : MonoBehaviour
                 }
                 else if (collidingObject.name == "Call")
                 {
-                    video.SetActive(true);
+                    video.alpha = 1f;
                     workerName.text = "Video Conference with " + collidingObject.GetComponent<Call>().GetName() + "...";
                 }
                 else if (collidingObject.name == "Raise")
@@ -267,9 +267,9 @@ public class ControllerGrabScript2 : MonoBehaviour
             
 
         }
-        if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip) && video.activeSelf)
+        if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip) && video.alpha == 1f)
         {
-            video.SetActive(false);
+            video.alpha = 0f;
         }
         if (collidingObject)
         {

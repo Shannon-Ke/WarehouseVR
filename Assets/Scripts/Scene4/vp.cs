@@ -10,6 +10,5 @@ public class vp : MonoBehaviour {
     {
         GetComponent<VideoPlayer>().Play();
     }
-   
-
+  
 }
