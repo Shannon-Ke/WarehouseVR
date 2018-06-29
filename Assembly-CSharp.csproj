@@ -114,6 +114,7 @@
     <Compile Include="Assets\Scripts\Scene2\ViveScript.cs" />
     <Compile Include="Assets\Scripts\Scene2\ViveScript2.cs" />
     <Compile Include="Assets\Scripts\Scene3\Bars.cs" />
+    <Compile Include="Assets\Scripts\Scene3\Call.cs" />
     <Compile Include="Assets\Scripts\Scene3\ControlAnimation.cs" />
     <Compile Include="Assets\Scripts\Scene3\ControllerGrabScript2.cs" />
     <Compile Include="Assets\Scripts\Scene3\ControllerScenThree.cs" />

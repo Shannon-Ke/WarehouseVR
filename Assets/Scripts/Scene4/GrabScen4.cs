@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
-
+using UnityEngine.Video;
 public class GrabScen4 : MonoBehaviour
 {
     public GameObject call;
@@ -14,7 +14,7 @@ public class GrabScen4 : MonoBehaviour
     private GameObject collidingObject;
     // 2 Serves as a reference to the GameObject that the player is currently grabbing.
     private GameObject objectInHand;
-    public GameObject video;
+    public CanvasGroup video;
     public static GameObject collide;
     private SteamVR_Controller.Device Controller
 
@@ -147,10 +147,11 @@ public class GrabScen4 : MonoBehaviour
         {
             counter = 0;
             call.SetActive(false);
-            video.SetActive(true);
-        } else if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip) && video.activeSelf)
+            video.alpha = 1f;
+            
+        } else if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip) && video.alpha == 1f)
         {
-            video.SetActive(false);
+            video.alpha = 0f;
         }
 
     }

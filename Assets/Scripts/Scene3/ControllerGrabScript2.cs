@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Valve.VR;
 
 public class ControllerGrabScript2 : MonoBehaviour
 {
+    public Text workerName;
+    public CanvasGroup video;
     public GameObject workers;
     public static ControllerGrabObject control;
     public GameObject dots, front, back;
@@ -150,23 +153,23 @@ public class ControllerGrabScript2 : MonoBehaviour
             {
                 if (scatter && collidingObject.name == "Viewbutton")
                 {
-                    heatmaptoggle.SetActive(true);
+                    globe.SetActive(true);
                     scatterplot.SetActive(false);
-                    heat = true;
+                    world = true;
                     scatter = false;
                 }
                 else if (bar && collidingObject.name == "Viewbutton")
                 {
-                    scatterplot.SetActive(true);
+                    heatmaptoggle.SetActive(true);
                     bargraph.SetActive(false);
                     bar = false;
-                    scatter = true;
+                    heat = true;
                 } else if (heat && collidingObject.name == "Viewbutton")
                 {
-                    globe.SetActive(true);
+                    scatterplot.SetActive(true);
                     heatmaptoggle.SetActive(false);
                     heat = false;
-                    world = true;
+                    scatter = true;
                 } else if (globe && collidingObject.name == "Viewbutton")
                 {
                     bargraph.SetActive(true);
@@ -214,6 +217,11 @@ public class ControllerGrabScript2 : MonoBehaviour
                     }
                     
                 }
+                else if (collidingObject.name == "Call")
+                {
+                    video.alpha = 1f;
+                    workerName.text = "Video Conference with " + collidingObject.GetComponent<Call>().GetName() + "...";
+                }
                 else if (collidingObject.name == "Raise")
                 {
                     Debug.Log("touched");
@@ -258,6 +266,10 @@ public class ControllerGrabScript2 : MonoBehaviour
 
             
 
+        }
+        if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip) && video.alpha == 1f)
+        {
+            video.alpha = 0f;
         }
         if (collidingObject)
         {

@@ -5,9 +5,10 @@ using UnityEngine.Video;
 
 public class vp : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    private void Start()
+    {
         GetComponent<VideoPlayer>().Play();
-	}
-	
+    }
+  
 }
