@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\Hide.cs" />
     <Compile Include="Assets\Scripts\LaserPointer.cs" />
     <Compile Include="Assets\Scripts\ObjectPhysics.cs" />
+    <Compile Include="Assets\Scripts\PackEasy.cs" />
     <Compile Include="Assets\Scripts\Scene1\BinCollide.cs" />
     <Compile Include="Assets\Scripts\Scene1\ControllerGrabObject.cs" />
     <Compile Include="Assets\Scripts\Scene1\FPSCamera.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="Assets\Scripts\Scene4\Screen3.cs" />
     <Compile Include="Assets\Scripts\Scene4\ScreenAnim.cs" />
     <Compile Include="Assets\Scripts\Scene4\vp.cs" />
+    <Compile Include="Assets\Scripts\Scene5\WalkUI.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />

@@ -270,6 +270,7 @@ public class ControllerGrabScript2 : MonoBehaviour
         if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip) && video.alpha == 1f)
         {
             video.alpha = 0f;
+            Debug.Log("got here");
         }
         if (collidingObject)
         {
