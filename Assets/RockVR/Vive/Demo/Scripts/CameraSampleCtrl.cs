@@ -39,19 +39,19 @@ namespace RockVR.Vive.Demo
 
         private void Start()
         {
-            if (controllerState == ControllerState.Ray)
-            {
-                tooltipController.triggerText = "Grab Items/Click buttons";
-                tooltipController.touchpadText = "Teleport";
-                tooltipController.appMenuText = "Start/Stop Capture";
-            }
-            else if (controllerState == ControllerState.Touch)
-            {
-                tooltipController.triggerText = "Grab Items/Click buttons";
-                tooltipController.touchpadText = "Teleport";
+            //if (controllerState == ControllerState.Ray)
+            //{
+            //    tooltipController.triggerText = "Grab Items/Click buttons";
+            //    tooltipController.touchpadText = "Teleport";
+                
+            //}
+            //else if (controllerState == ControllerState.Touch)
+            //{
+            //    tooltipController.triggerText = "Grab Items/Click buttons";
+            //    tooltipController.touchpadText = "Teleport";
                
-            }
-            gripButton.SetActive(false);
+            //}
+            //gripButton.SetActive(false);
         }
 
         void OnEnable()
