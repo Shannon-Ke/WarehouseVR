@@ -7,6 +7,8 @@ using Valve.VR;
 public class ControllerGrabScript2 : MonoBehaviour
 {
     public Text workerName;
+    public GameObject workerhighlight;
+    public GameObject viewhighlight;
     public CanvasGroup video;
     public GameObject workers;
     public static ControllerGrabObject control;
@@ -272,8 +274,18 @@ public class ControllerGrabScript2 : MonoBehaviour
             video.alpha = 0f;
             Debug.Log("got here");
         }
+
         if (collidingObject)
         {
+            if (collidingObject.name == "WorkerButton")
+            {
+                workerhighlight.SetActive(true);
+            } 
+            else if (collidingObject.name == "Viewbutton")
+            {
+              
+                viewhighlight.SetActive(true);
+            } 
             if (Controller.GetPress(SteamVR_Controller.ButtonMask.Trigger))
             {
                 //could be map.position - transform.initial
@@ -309,6 +321,10 @@ public class ControllerGrabScript2 : MonoBehaviour
                 }
                 
             }
+        } else
+        {
+            workerhighlight.SetActive(false);
+            viewhighlight.SetActive(false);
         }
 
     }
