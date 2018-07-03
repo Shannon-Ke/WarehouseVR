@@ -59,6 +59,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CurvedLine_2016_03_11\CurvedLine\CurvedLinePoint.cs" />
+    <Compile Include="Assets\CurvedLine_2016_03_11\CurvedLine\CurvedLineRenderer.cs" />
+    <Compile Include="Assets\CurvedLine_2016_03_11\CurvedLine\LineSmoother.cs" />
     <Compile Include="Assets\RockVR\Common\Scripts\EventDelegate.cs" />
     <Compile Include="Assets\RockVR\Common\Scripts\FPSDisplay.cs" />
     <Compile Include="Assets\RockVR\Common\Scripts\Platform.cs" />
@@ -120,6 +123,7 @@
     <Compile Include="Assets\Scripts\Scene3\ControllerEasy.cs" />
     <Compile Include="Assets\Scripts\Scene3\ControllerGrabScript2.cs" />
     <Compile Include="Assets\Scripts\Scene3\ControllerScenThree.cs" />
+    <Compile Include="Assets\Scripts\Scene3\GlobeRays.cs" />
     <Compile Include="Assets\Scripts\Scene3\RaiseAnim.cs" />
     <Compile Include="Assets\Scripts\Scene3\Worker.cs" />
     <Compile Include="Assets\Scripts\Scene4\GrabScen4.cs" />
