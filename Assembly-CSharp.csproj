@@ -94,6 +94,10 @@
     <Compile Include="Assets\RockVR\Vive\Scripts\Interactions\VIVE_Interaction.cs" />
     <Compile Include="Assets\RockVR\Vive\Scripts\Interactions\VIVE_Teleport.cs" />
     <Compile Include="Assets\Scripts\Combine.cs" />
+    <Compile Include="Assets\Scripts\GlobeScene\GlobeLaser.cs" />
+    <Compile Include="Assets\Scripts\GlobeScene\GlobeScene.cs" />
+    <Compile Include="Assets\Scripts\GlobeScene\LeftHand.cs" />
+    <Compile Include="Assets\Scripts\GlobeScene\RightHand.cs" />
     <Compile Include="Assets\Scripts\Hide.cs" />
     <Compile Include="Assets\Scripts\LaserPointer.cs" />
     <Compile Include="Assets\Scripts\ObjectPhysics.cs" />
@@ -238,6 +242,7 @@
     <None Include="Assets\RockVR\Video\Shaders\DownsamplePro.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_ClearAll.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />
+    <None Include="Assets\Models\archibase.net.txt" />
     <None Include="Assets\RockVR\Video\Shaders\Cubemap2Equirectangular.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Teleport\Shaders\Highlight.shader" />
     <None Include="Assets\RockVR\Video\Shaders\CubemapDisplayPro.shader" />

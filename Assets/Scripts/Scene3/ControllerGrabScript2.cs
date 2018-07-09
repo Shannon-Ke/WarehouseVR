@@ -22,15 +22,15 @@ public class ControllerGrabScript2 : MonoBehaviour
     bool scatter;
     bool bar;
     bool heat;
-    bool world;
+    
     public GameObject bargraph;
     public GameObject scatterplot;
     public GameObject heatmap;
     public GameObject heatmaptoggle;
-    public GameObject globe;
+    
     public GameObject riseup;
     public static GameObject collide;
-    public GameObject asia, africa, us, europe;
+   
     private SteamVR_Controller.Device Controller
 
     {
@@ -130,21 +130,7 @@ public class ControllerGrabScript2 : MonoBehaviour
         // Remove the reference to the formerly attached object.
         objectInHand = null;
     }
-    void MapToggle(GameObject curr, GameObject one, GameObject two, GameObject three)
-    {
-        if (curr.activeSelf)
-        {
-            curr.SetActive(false);
-        }
-        else
-        {
-            
-            curr.SetActive(true);
-        }
-        one.SetActive(false);
-        two.SetActive(false);
-        three.SetActive(false);
-    }
+   
     // Update is called once per frame
     void Update()
     {
@@ -155,9 +141,9 @@ public class ControllerGrabScript2 : MonoBehaviour
             {
                 if (scatter && collidingObject.name == "Viewbutton")
                 {
-                    globe.SetActive(true);
+                    bargraph.SetActive(true);
                     scatterplot.SetActive(false);
-                    world = true;
+                    bar = true;
                     scatter = false;
                 }
                 else if (bar && collidingObject.name == "Viewbutton")
@@ -172,13 +158,7 @@ public class ControllerGrabScript2 : MonoBehaviour
                     heatmaptoggle.SetActive(false);
                     heat = false;
                     scatter = true;
-                } else if (globe && collidingObject.name == "Viewbutton")
-                {
-                    bargraph.SetActive(true);
-                    globe.SetActive(false);
-                    world = false;
-                    bar = true;
-                }
+                } 
                 else if (collidingObject.name == "hideblue" || collidingObject.name == "hidered")
                 {
                     if (collidingObject.GetComponent<Hide>().color.activeSelf)
@@ -245,24 +225,7 @@ public class ControllerGrabScript2 : MonoBehaviour
                         RaiseAnim.risen = true;
                     }
                 }
-                else if (collidingObject.name == "Africa"){
-                    Debug.Log("herehere");
-                    if (africa.activeSelf)
-                    {
-                        africa.SetActive(false);
-                    }
-                    else
-                    {
-                        Debug.Log("should be here");
-                        africa.SetActive(true);
-                    }
-                    asia.SetActive(false);
-                    us.SetActive(false);
-                    europe.SetActive(false);
-                }
-                else if (collidingObject.name == "NorthAmerica") { MapToggle(us, africa, asia, europe); }
-                else if (collidingObject.name == "Europe") { MapToggle(europe, us, africa, asia); }
-                else if (collidingObject.name == "Asia") { MapToggle(asia, europe, us, africa); }
+                
 
             }
 

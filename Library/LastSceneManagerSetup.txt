@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/GlobeScene.unity
+- path: Assets/Scenes/Planogram.unity
   isLoaded: 1
   isActive: 1

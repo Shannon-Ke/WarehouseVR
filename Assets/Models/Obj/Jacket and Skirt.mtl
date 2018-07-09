@@ -1,0 +1,44 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 07.12.2013 09:55:37
+
+newmtl Cloth
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.291500 0.064052 0.064052
+	Kd 0.874510 0.192157 0.192157
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka Cloth_DIFFUSE.jpg
+	map_Kd Cloth_DIFFUSE.jpg
+	map_bump Cloth_NORMAL.jpg
+	bump Cloth_NORMAL.jpg
+
+newmtl Lock
+	Ns 79.999992
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588235 0.588235 0.588235
+	Kd 0.588235 0.588235 0.588235
+	Ks 0.900000 0.900000 0.900000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka lock_DIFFUSE.jpg
+	map_Kd lock_DIFFUSE.jpg
+	map_bump lock_NORMAL.jpg
+	bump lock_NORMAL.jpg
+
+newmtl wire_088177027
+	Ns 32
+	d 1
+	Tr 0
+	Tf 1 1 1
+	illum 2
+	Ka 0.345098 0.694118 0.105882
+	Kd 0.345098 0.694118 0.105882
+	Ks 0.350000 0.350000 0.350000
