@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Left : MonoBehaviour
 {
-    public GameObject slider;
+    public GameObject slider, one, two;
     public CanvasGroup choose, wanttoview, plaidshirt;
     bool item = false;
     private SteamVR_TrackedObject trackedObj;
@@ -23,6 +23,8 @@ public class Left : MonoBehaviour
         {
             if (wanttoview.alpha == 1f)
             {
+                two.SetActive(true);
+                one.SetActive(false);
                 plaidshirt.alpha = 1f;
                 wanttoview.alpha = 0f;
             }
@@ -37,6 +39,8 @@ public class Left : MonoBehaviour
                 wanttoview.alpha = 1f;
             } else
             {
+                one.SetActive(true);
+                two.SetActive(false);
                 item = false;
                 slider.SetActive(true);
                 choose.alpha = 1f;
