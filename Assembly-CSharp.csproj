@@ -102,6 +102,9 @@
     <Compile Include="Assets\Scripts\LaserPointer.cs" />
     <Compile Include="Assets\Scripts\ObjectPhysics.cs" />
     <Compile Include="Assets\Scripts\PackEasy.cs" />
+    <Compile Include="Assets\Scripts\planogram\Left.cs" />
+    <Compile Include="Assets\Scripts\planogram\PlanogramController.cs" />
+    <Compile Include="Assets\Scripts\planogram\Right.cs" />
     <Compile Include="Assets\Scripts\Scene1\BinCollide.cs" />
     <Compile Include="Assets\Scripts\Scene1\ControllerGrabObject.cs" />
     <Compile Include="Assets\Scripts\Scene1\FPSCamera.cs" />
